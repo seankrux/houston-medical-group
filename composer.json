@@ -1,0 +1,16 @@
+{
+    "name": "tmt/hmg",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "TMT\\HMG\\Includes\\": "Includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Houston Medical Group",
+            "email": "tonyly@tmtins.com"
+        }
+    ],
+    "require": {}
+}
