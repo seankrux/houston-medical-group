@@ -1,5 +1,5 @@
 <?php
-namespace TMT\GHL\Includes;
+namespace TMT\HMG\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
