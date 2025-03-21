@@ -25,9 +25,10 @@ class Cases extends Base implements DBTable {
                 clinic VARCHAR(10) COLLATE $collate,
                 atty_name VARCHAR(250) NOT NULL COLLATE $collate,
                 date_mailed DATE NOT NULL COLLATE $collate,
-                `status` VARCHAR(20) NOT NULL COLLATE $collate INDEX,
+                `status` VARCHAR(20) NOT NULL COLLATE $collate,
                 archived tinyint unsigned NOT NULL DEFAULT 0,
-            ) ENGINE='InnoDB' COLLATE $charset_collate;";
+                INDEX (`status`)
+            ) ENGINE=InnoDB $charset_collate;";
 
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
             dbDelta($sql);

@@ -10,7 +10,7 @@ use TMT\HMG\Includes\DB\CaseMeta;
 
 class DatabaseLoader {
     public function init(): void {
-        ( new Cases() )->create();
+        ( new Cases() )->create() ;
         ( new CaseMeta() )->create();
     }
 }

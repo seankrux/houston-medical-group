@@ -11,6 +11,7 @@
  */
 
 use TMT\HMG\Includes\PluginLoader;
+use TMT\HMG\Includes\DB\DatabaseLoader;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
@@ -21,4 +22,9 @@ define( 'TMT_HMG_URL', plugin_dir_url( __FILE__ ) );
 
 require_once TMT_HMG_PATH . 'vendor/autoload.php';
 
-new PluginLoader();
+register_activation_hook(__FILE__, 'tmt_hmg_activate_plugin');
+function tmt_hmg_activate_plugin() {
+    ( new DatabaseLoader() )->init();
+}
+
+( new PluginLoader() );

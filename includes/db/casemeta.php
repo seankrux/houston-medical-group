@@ -19,10 +19,11 @@ class CaseMeta extends Base implements DBTable {
             $charset_collate = "CHARACTER SET utf8mb4 COLLATE $collate";
             $sql = "CREATE TABLE $this->table_name (
                 ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                case_id BIGINT(20) UNSIGNED NOT NULL INDEX,
+                case_id BIGINT(20) UNSIGNED NOT NULL,
                 clinic VARCHAR(255) NOT NULL COLLATE $collate,
                 amount DECIMAL(18,9) NOT NULL,
-            ) ENGINE='InnoDB' COLLATE $charset_collate;";
+                INDEX (case_id)
+            ) ENGINE=InnoDB $charset_collate;";
 
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
             dbDelta($sql);

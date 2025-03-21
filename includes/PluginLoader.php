@@ -15,7 +15,5 @@ class PluginLoader {
 
     private function load_dependencies() {}
 
-    private function initialize_components() {
-        ( new DatabaseLoader() )->init();
-    }
+    private function initialize_components() {}
 }
