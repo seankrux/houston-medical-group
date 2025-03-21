@@ -8,9 +8,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 use TMT\HMG\Includes\Interface\DBTable;
 use TMT\HMG\Includes\DB\Base;
 
-class Cases extends Base implements DBTable {
+class CaseMeta extends Base implements DBTable {
     public function __construct() {
-        parent::__construct( 'cases' );
+        parent::__construct( 'casemeta' );
     }
 
     public function create(): void {
@@ -19,14 +19,9 @@ class Cases extends Base implements DBTable {
             $charset_collate = "CHARACTER SET utf8mb4 COLLATE $collate";
             $sql = "CREATE TABLE $this->table_name (
                 ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                first_name VARCHAR(250) NOT NULL COLLATE $collate,
-                last_name VARCHAR(250) NOT NULL COLLATE $collate,
-                doi DATE NOT NULL,
-                clinic VARCHAR(10) COLLATE $collate,
-                atty_name VARCHAR(250) NOT NULL COLLATE $collate,
-                date_mailed DATE NOT NULL COLLATE $collate,
-                `status` VARCHAR(20) NOT NULL COLLATE $collate INDEX,
-                archived tinyint unsigned NOT NULL DEFAULT 0,
+                case_id BIGINT(20) UNSIGNED NOT NULL INDEX,
+                clinic VARCHAR(255) NOT NULL COLLATE $collate,
+                amount DECIMAL(18,9) NOT NULL,
             ) ENGINE='InnoDB' COLLATE $charset_collate;";
 
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
