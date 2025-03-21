@@ -6,11 +6,5 @@
             "TMT\\HMG\\Includes\\": "Includes/"
         }
     },
-    "authors": [
-        {
-            "name": "Houston Medical Group",
-            "email": "tonyly@tmtins.com"
-        }
-    ],
     "require": {}
 }
