@@ -11,6 +11,8 @@ class Base {
     const PREFIX = 'hmg_';
     protected string $table_name;
     protected wpdb $db;
+    protected string $collate = 'utf8mb4_unicode_520_ci';
+    protected string $charset = 'utf8mb4';
 
     public function __construct( string $table_name ) {
         global $wpdb;
@@ -25,5 +27,9 @@ class Base {
 
     protected function table_exists(): bool {
         return $this->db->get_var( "SHOW TABLES LIKE '{$this->table_name}'" ) === $this->table_name;
+    }
+
+    protected function get_charset_collate(): string {
+        return sprintf( 'DEFAULT CHARACTER SET %s COLLATE %s', $this->charset, $this->collate );
     }
 }
