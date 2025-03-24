@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 use TMT\HMG\Includes\Interface\DBTable;
 use TMT\HMG\Includes\DB\Base;
 
-class Patient extends Base implements DBTable {
+class Clinics extends Base implements DBTable {
     public function __construct() {
         parent::__construct( 'clinics' );
     }
