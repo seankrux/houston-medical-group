@@ -8,18 +8,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 use TMT\HMG\Includes\Interface\DBTable;
 use TMT\HMG\Includes\DB\Base;
 
-class Patients extends Base implements DBTable {
+class CaseAttoryney extends Base implements DBTable {
     public function __construct() {
-        parent::__construct( 'patients' );
+        parent::__construct( 'caseattorney' );
     }
 
     public function create(): void {
         if ( ! $this->table_exists() ) {
             $sql = "CREATE TABLE $this->table_name (
                 ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                first_name VARCHAR(255) NOT NULL COLLATE $this->collate,
-                last_name VARCHAR(255) NOT NULL COLLATE $this->collate,
-                middle_name VARCHAR(255) NULL COLLATE $this->collate
+                case_id BIGINT(20) UNSIGNED NOT NULL,
+                atty_id BIGINT(20) UNSIGNED NOT NULL
+                atty_email VARCHAR(50) NULL COLLATE $this->collate,
+                atty_phone VARCHAR(50) NULL COLLATE $this->collate,
+                role VARCHAR(255) NOT NULL COLLATE $this->collate,
+                pending_lawsuit TINYINT(1) NOT NULL DEFAULT 0,
+                collection_contact TINYINT(1) NOT NULL DEFAULT 0
             ) ENGINE=InnoDB {$this->get_charset_collate()};";
 
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';

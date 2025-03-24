@@ -18,7 +18,7 @@ class Clinics extends Base implements DBTable {
             $sql = "CREATE TABLE $this->table_name (
                 ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 `name` VARCHAR(255) NOT NULL COLLATE $this->collate,
-                `code` VAR(10) NOT NULL COLLATE $this->collate
+                `code` VARCHAR(10) NOT NULL COLLATE $this->collate
             ) ENGINE=InnoDB {$this->get_charset_collate()};";
 
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
