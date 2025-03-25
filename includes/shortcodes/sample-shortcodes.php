@@ -1,7 +1,7 @@
 <?php
 namespace TMT\HMG\Includes\Shortcodes;
 
-use TMT\HMG\Includes\Interface\Shortcode;
+use TMT\HMG\Includes\Interfaces\Shortcode;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

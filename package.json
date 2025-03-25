@@ -24,6 +24,7 @@
         "@fullcalendar/react": "^6.1.15",
         "@mui/material": "^6.4.6",
         "@mui/x-date-pickers": "^7.26.0",
+        "ajv": "^8.17.1",
         "dayjs": "^1.11.13",
         "lucide-react": "^0.475.0",
         "react-toastify": "^11.0.3",

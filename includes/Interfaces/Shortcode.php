@@ -1,5 +1,5 @@
 <?php
-namespace TMT\HMG\Includes\Interface;
+namespace TMT\HMG\Includes\Interfaces;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
