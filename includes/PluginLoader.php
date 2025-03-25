@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly.
 
-use TMT\HMG\Includes\DB\DatabaseLoader;
+use TMT\HMG\Includes\Shortcodes\ShortcodeLoader;
 
 class PluginLoader {
     public function __construct() {
@@ -15,5 +15,7 @@ class PluginLoader {
 
     private function load_dependencies() {}
 
-    private function initialize_components() {}
+    private function initialize_components() {
+        ( new ShortcodeLoader() )->init();
+    }
 }

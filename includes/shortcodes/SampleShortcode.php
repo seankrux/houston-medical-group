@@ -8,11 +8,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 class SampleShortcode implements Shortcode {
-    public function render( array $atts ): void {
+    const SHORTCODE = 'import_excel';
+    const SCRIPT_HANDLE = 'hmg_import_excel';
 
+    public function render( array $atts ): void {
+        load_template( TMT_HMG_PATH . 'Base/SampleBase.php', true );
     }
 
     public function scripts(): void {
-
+        wp_register_script(
+            self::SCRIPT_HANDLE,
+            TMT_HMG_URL . 'build/import-excel.js',
+            array('wp-element'),
+            filemtime( TMT_HMG_PATH . 'build/import-excel.js' ),
+            true
+        );
     }
 }
