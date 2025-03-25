@@ -7,6 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use TMT\HMG\Includes\DB\Cases;
 use TMT\HMG\Includes\DB\CaseMeta;
+use TMT\HMG\Includes\DB\CaseLogs;
+use TMT\HMG\Includes\DB\CaseNotes;
+use TMT\HMG\Includes\DB\CaseAttoryney;
 use TMT\HMG\Includes\DB\Attorneys;
 use TMT\HMG\Includes\DB\AttorneyMeta;
 use TMT\HMG\Includes\DB\Patients;
@@ -24,5 +27,8 @@ class DatabaseLoader {
         ( new PatientMeta() )->create();
         ( new Clinics() )->create();
         ( new ClinicMeta() )->create();
+        ( new CaseAttoryney() )->create();
+        ( new CaseLogs() )->create();
+        ( new CaseNotes() )->create();
     }
 }
