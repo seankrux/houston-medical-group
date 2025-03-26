@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly
 
-use TMT\HMG\Includes\Interfaces\Shortcode;
+use TMT\HMG\Includes\Interfaces\ShortCodeInterface;
 
 class Dashboard implements ShortCodeInterface {
     const SHORTCODE = 'hmg_dashboard';
