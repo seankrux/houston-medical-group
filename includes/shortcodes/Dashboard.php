@@ -17,22 +17,29 @@ class Dashboard implements ShortCodeInterface {
 
     public function scripts (): void {
         wp_register_script(
-        self::SCRIPT_HANDLE,
-        TMT_HMG_URL . 'build/dashboard.js',
-        array('wp-element'),
-        filemtime( TMT_HMG_PATH . 'build/dashboard.js'),
-        true
+            self::SCRIPT_HANDLE,
+            TMT_HMG_URL . 'build/dashboard.js',
+            array('wp-element'),
+            filemtime( TMT_HMG_PATH . 'build/dashboard.js'),
+            true
         );
 
-        wp_register_style(
-        self::SCRIPT_HANDLE,
-        TMT_HMG_URL . 'src/Dashboard/index.css',
-        array(),
-        filemtime( TMT_HMG_PATH . 'src/Dashboard/index.css' )
-        
-        );
+        // wp_register_script(
+        //     self::SCRIPT_HANDLE,
+        //     TMT_HMG_URL . 'build/board.js',
+        //     array('wp-element'),
+        //     filemtime( TMT_HMG_PATH . 'build/board.js'),
+        //     true
+        // );
 
-        wp_enqueue_script( self::SCRIPT_HANDLE );
-        wp_enqueue_style( self::SCRIPT_HANDLE );
+        // wp_register_style(
+        //     self::SCRIPT_HANDLE,
+        //     TMT_HMG_URL . 'build/index.css',
+        //     array(),
+        //     filemtime( TMT_HMG_PATH . 'build/index.css' )
+        // );
+
+        // wp_enqueue_script( self::SCRIPT_HANDLE );
+        // wp_enqueue_style( self::SCRIPT_HANDLE );
     }
 }

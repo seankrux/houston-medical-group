@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const defaults = require('@wordpress/scripts/config/webpack.config');
 
 module.exports = {
@@ -14,5 +14,11 @@ module.exports = {
     react: 'React',
     'react-dom': 'ReactDOM',
     '@wordpress/element': 'wp.element'
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+    extensions: ['.js', '.jsx', '.json'],
   },
 };

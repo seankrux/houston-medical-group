@@ -1,6 +1,10 @@
 import { useState, React } from 'react'
-import companyLogo from './assets/logo.png'
+import companyLogo from '../assets/logo.png'
+import './index.css'
+// import "@/components/ui/button.jsx"
 import { ChevronDown, Menu, MailOpenIcon, ReceiptTextIcon, UserCircleIcon} from 'lucide-react'
+// import "./Board"
+// import Mein from "./Board"
 import {Button} from "@/components/ui/button"
 import {
   Sidebar,
