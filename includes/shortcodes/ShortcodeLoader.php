@@ -18,7 +18,7 @@ class ShortcodeLoader {
     }
 
     public function shortcodes() {
-        add_shortcode( 'sample_shortcode', array( $this->sample_shortcode, 'render' ) );
+        add_shortcode( $this->sample_shortcode::SHORTCODE, array( $this->sample_shortcode, 'render' ) );
     }
 
     public function admin_scripts(): void {

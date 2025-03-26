@@ -5,6 +5,6 @@
 
  use TMT\HMG\Includes\Shortcodes\SampleShortcode;
 
- extract( $args );
+wp_enqueue_script( SampleShortcode::SCRIPT_HANDLE );
  ?>
-<div class="sample-base"></div>
+<div id="sample-base"></div>

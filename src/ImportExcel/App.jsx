@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { useDropzone } from "react-dropzone";
 
 const App = () => {

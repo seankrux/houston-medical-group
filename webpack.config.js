@@ -11,8 +11,6 @@ module.exports = {
       filename: '[name].js'
   },
   externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
     '@wordpress/element': 'wp.element'
   },
 };
