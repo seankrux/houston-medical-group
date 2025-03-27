@@ -12,6 +12,8 @@
         "@wordpress/scripts": "^22.5.0"
     },
     "dependencies": {
-        "react-dropzone": "^14.3.8"
+        "@wordpress/element": "^6.20.0",
+        "react-dropzone": "^14.3.8",
+        "xlsx": "^0.18.5"
     }
 }

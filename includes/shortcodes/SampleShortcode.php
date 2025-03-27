@@ -19,7 +19,7 @@ class SampleShortcode implements Shortcode {
         wp_register_script(
             self::SCRIPT_HANDLE,
             TMT_HMG_URL . 'build/import-excel.js',
-            array(),
+            array('wp-element'),
             filemtime( TMT_HMG_PATH . 'build/import-excel.js' ),
             true
         );
