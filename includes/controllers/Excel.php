@@ -6,5 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 class ImportExcel {
-    
+    public function handle_import() {
+        
+    }
 }
