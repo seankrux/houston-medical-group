@@ -17,11 +17,12 @@ class Cases extends Base implements DBTable {
         if ( ! $this->table_exists() ) {
             $sql = "CREATE TABLE $this->table_name (
                 ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                case_id BIGINT(20) UNSIGNED NOT NULL,
                 patient_id BIGINT(20) UNSIGNED NOT NULL,
                 clinic_id BIGINT(20) UNSIGNED NOT NULL,
-                atty_id BIGINT(20) UNSIGNED NOT NULL,
                 date_mailed DATE NOT NULL COLLATE $this->collate,
                 `status` VARCHAR(20) NOT NULL COLLATE $this->collate,
+                INDEX (case_id),
                 INDEX (patient_id),
                 INDEX (clinic_id),
                 INDEX (atty_id),
