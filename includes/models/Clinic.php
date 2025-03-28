@@ -9,13 +9,13 @@ use TMT\HMG\Includes\DB\Base;
 use TMT\HMG\Includes\Interface\CRUD;
 use WP_Error;
 
-class PatientCase extends Base implements CRUD {
+class Clinic extends Base implements CRUD {
     public function __construct() {
-        parent::__construct( 'cases' );
+        parent::__construct( 'clinics' );
     }
 
     public function insert( object $data ): int|WP_Error {
-        if ( ! $data instanceof PatientCaseData ) {
+        if ( ! $data instanceof ClinicData ) {
             return new WP_Error(
                 'invalid_data',
                 'Invalid data type'
@@ -25,11 +25,8 @@ class PatientCase extends Base implements CRUD {
         $response = $this->db->insert(
             $this->table_name,
             array(
-                'case_id' => $data->get_case_id(),
-                'patient_id' => $data->get_patient_id(),
-                'clinic_id' => $data->get_clinic_id(),
-                'date_mailed' => $data->get_date_mailed(),
-                'status' => $data->get_status()
+                'name' => $data->get_name(),
+                'code' => $data->get_code()
             )
         );
 
@@ -43,27 +40,27 @@ class PatientCase extends Base implements CRUD {
         return $this->db->insert_id;
     }
 
-    public function get( int $id ): array|WP_Error {
+    public function get(int $id): array|WP_Error {
         $response = $this->db->get_row(
             $this->db->prepare(
-                "SELECT * FROM {$this->table_name} WHERE case_id = %d",
+                "SELECT * FROM {$this->table_name} WHERE ID = %d",
                 $id
             ),
             ARRAY_A
         );
-    
+
         if ( is_null( $response ) || empty( $response ) ) {
             return new WP_Error(
                 'not_found',
-                'Patient case not found'
+                'Clinic not found'
             );
         }
-    
+
         return is_array( $response ) ? $response : new WP_Error( 'invalid_response', 'Unexpected response type' );
     }
 
     public function update( int $id, object $data ): bool|WP_Error {
-        if ( ! $data instanceof PatientCaseData ) {
+        if ( ! $data instanceof ClinicData ) {
             return new WP_Error(
                 'invalid_data',
                 'Invalid data type'
@@ -73,54 +70,36 @@ class PatientCase extends Base implements CRUD {
         $response = $this->db->update(
             $this->table_name,
             array(
-                'case_id' => $data->get_case_id(),
-                'patient_id' => $data->get_patient_id(),
-                'clinic_id' => $data->get_clinic_id(),
-                'date_mailed' => $data->get_date_mailed(),
-                'status' => $data->get_status()
+                'name' => $data->get_name(),
+                'code' => $data->get_code()
             ),
-            array( 'case_id' => $id )
+            array( 'ID' => $id )
         );
 
         return $response;
     }
 
-    public function delete( int $id ): int|false { 
+    public function delete( int $id ): int|false {
         $response = $this->db->delete(
             $this->table_name,
-            array( 'case_id' => $id )
+            array( 'ID' => $id )
         );
 
         return $response;
     }
 }
 
-class PatientCaseData {
+class ClinicData {
     public function __construct(
-        private string $case_id,
-        private int $patient_id,
-        private int $clinic_id,
-        private string $date_mailed,
-        private string $status
+        private string $name,
+        private string $code
     ) {}
 
-    public function get_case_id(): string {
-        return $this->case_id;
+    public function get_name(): string {
+        return $this->name;
     }
 
-    public function get_patient_id(): int {
-        return $this->patient_id;
-    }
-
-    public function get_clinic_id(): int {
-        return $this->clinic_id;
-    }
-
-    public function get_date_mailed(): string {
-        return $this->date_mailed;
-    }
-
-    public function get_status(): string {
-        return $this->status;
+    public function get_code(): string {
+        return $this->code;
     }
 }

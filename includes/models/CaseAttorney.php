@@ -9,27 +9,29 @@ use TMT\HMG\Includes\DB\Base;
 use TMT\HMG\Includes\Interface\CRUD;
 use WP_Error;
 
-class PatientCase extends Base implements CRUD {
+class CaseAttorney extends Base implements CRUD {
     public function __construct() {
-        parent::__construct( 'cases' );
+        $this->table_name = 'caseattorney';
     }
 
     public function insert( object $data ): int|WP_Error {
-        if ( ! $data instanceof PatientCaseData ) {
+        if ( ! $data instanceof AttorneyData ) {
             return new WP_Error(
                 'invalid_data',
                 'Invalid data type'
             );
         }
-        
+
         $response = $this->db->insert(
             $this->table_name,
             array(
                 'case_id' => $data->get_case_id(),
-                'patient_id' => $data->get_patient_id(),
-                'clinic_id' => $data->get_clinic_id(),
-                'date_mailed' => $data->get_date_mailed(),
-                'status' => $data->get_status()
+                'attorney_id' => $data->get_attorney_id(),
+                'attorney_email' => $data->get_attorney_email(),
+                'attorney_name' => $data->get_attorney_name(),
+                'role' => $data->get_role(),
+                'pending_lawsuit' => $data->get_pending_lawsuit(),
+                'collection_contact' => $data->get_collection_contact()
             )
         );
 
@@ -40,7 +42,7 @@ class PatientCase extends Base implements CRUD {
             );
         }
 
-        return $this->db->insert_id;
+        return $response;
     }
 
     public function get( int $id ): array|WP_Error {
@@ -51,19 +53,19 @@ class PatientCase extends Base implements CRUD {
             ),
             ARRAY_A
         );
-    
+
         if ( is_null( $response ) || empty( $response ) ) {
             return new WP_Error(
                 'not_found',
-                'Patient case not found'
+                'Attorney not found'
             );
         }
-    
+
         return is_array( $response ) ? $response : new WP_Error( 'invalid_response', 'Unexpected response type' );
     }
 
     public function update( int $id, object $data ): bool|WP_Error {
-        if ( ! $data instanceof PatientCaseData ) {
+        if ( ! $data instanceof AttorneyData ) {
             return new WP_Error(
                 'invalid_data',
                 'Invalid data type'
@@ -74,10 +76,12 @@ class PatientCase extends Base implements CRUD {
             $this->table_name,
             array(
                 'case_id' => $data->get_case_id(),
-                'patient_id' => $data->get_patient_id(),
-                'clinic_id' => $data->get_clinic_id(),
-                'date_mailed' => $data->get_date_mailed(),
-                'status' => $data->get_status()
+                'attorney_id' => $data->get_attorney_id(),
+                'attorney_email' => $data->get_attorney_email(),
+                'attorney_name' => $data->get_attorney_name(),
+                'role' => $data->get_role(),
+                'pending_lawsuit' => $data->get_pending_lawsuit(),
+                'collection_contact' => $data->get_collection_contact()
             ),
             array( 'case_id' => $id )
         );
@@ -85,7 +89,7 @@ class PatientCase extends Base implements CRUD {
         return $response;
     }
 
-    public function delete( int $id ): int|false { 
+    public function delete( int $id ): int|false {
         $response = $this->db->delete(
             $this->table_name,
             array( 'case_id' => $id )
@@ -95,32 +99,42 @@ class PatientCase extends Base implements CRUD {
     }
 }
 
-class PatientCaseData {
+class AttorneyData {
     public function __construct(
-        private string $case_id,
-        private int $patient_id,
-        private int $clinic_id,
-        private string $date_mailed,
-        private string $status
+        private int $case_id,
+        private int $attorney_id,
+        private string $attorney_email,
+        private string $attorney_name,
+        private string $role,
+        private bool $pending_lawsuit,
+        private bool $collection_contact
     ) {}
 
-    public function get_case_id(): string {
+    public function get_case_id(): int {
         return $this->case_id;
     }
 
-    public function get_patient_id(): int {
-        return $this->patient_id;
+    public function get_attorney_id(): int {
+        return $this->attorney_id;
     }
 
-    public function get_clinic_id(): int {
-        return $this->clinic_id;
+    public function get_attorney_email(): string {
+        return $this->attorney_email;
     }
 
-    public function get_date_mailed(): string {
-        return $this->date_mailed;
+    public function get_attorney_name(): string {
+        return $this->attorney_name;
     }
 
-    public function get_status(): string {
-        return $this->status;
+    public function get_role(): string {
+        return $this->role;
+    }
+
+    public function get_pending_lawsuit(): bool {
+        return $this->pending_lawsuit;
+    }
+
+    public function get_collection_contact(): bool {
+        return $this->collection_contact;
     }
 }

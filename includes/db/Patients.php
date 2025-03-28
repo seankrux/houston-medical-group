@@ -19,7 +19,9 @@ class Patients extends Base implements DBTable {
                 ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 first_name VARCHAR(255) NOT NULL COLLATE $this->collate,
                 last_name VARCHAR(255) NOT NULL COLLATE $this->collate,
-                middle_name VARCHAR(255) NULL COLLATE $this->collate
+                middle_name VARCHAR(255) NULL COLLATE $this->collate,
+                email VARCHAR(255) NULL COLLATE $this->collate,
+                date_of_birth DATE NULL COLLATE $this->collate
             ) ENGINE=InnoDB {$this->get_charset_collate()};";
 
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
