@@ -5,6 +5,7 @@ module.exports = {
   ...defaults,
   entry: {
     'import-excel': './src/ImportExcel/index.js',
+    'settings': './src/Settings/index.js'
   },
   output: {
       path: path.resolve(__dirname, 'build'),
