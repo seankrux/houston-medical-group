@@ -1,5 +1,5 @@
 import { useState } from "react";
-import companyLogo from "../../assets/logo.png";
+import companyLogo from "@/assets/logo.png";
 import {
   ChevronDown,
   Menu,
@@ -7,9 +7,9 @@ import {
   ReceiptTextIcon,
   UserCircleIcon,
 } from "lucide-react";
-import { Button } from "../../components/ui/button.jsx";
-import { Input } from "../../components/ui/input.jsx";
-import { Checkbox } from "../../components/ui/checkbox.jsx";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Sidebar,
   SidebarContent,
@@ -22,7 +22,7 @@ import {
   SidebarProvider,
   useSidebar,
   SidebarTrigger,
-} from "../../components/ui/sidebar.jsx";
+} from "@/components/ui/sidebar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,7 +30,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../components/ui/dropdown-menu.jsx";
+} from "@/components/ui/dropdown-menu";
 import {
   flexRender,
   getCoreRowModel,
@@ -43,7 +43,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/ui/table.jsx";
+} from "@/components/ui/table";
 
 function Settings() {
   const columns = [
@@ -61,9 +61,64 @@ function Settings() {
 
   return (
     <>
-      <SidebarProvider>
-        <AppSideBar selectedIdx={8} />
-      </SidebarProvider>
+      <div className="flex h-full w-full bg-background-color">
+        <SidebarProvider>
+          <AppSideBar selectedIdx={8} />
+          <div className="px-5 py-5 w-full grid-cols-2 grid gap-5">
+            <SidebarTrigger className="md:hidden" />
+            <div className="grid grid-cols-2 bg-white p-5 gap-5 col-span-2 rounded-xs">
+              <div>
+                <h2>EMPLOYEES</h2>
+                <Input></Input>
+                <div className="mt-5">
+                  <div className="flex items-center">
+                    <div className="w-45">
+                      <h2 className="">FIRST NAME</h2>
+                    </div>
+                    <Input></Input>
+                  </div>
+                  <div className="flex items-center mt-2.5">
+                    <div className="w-45">
+                      <h2 className="">LAST NAME</h2>
+                    </div>
+                    <Input></Input>
+                  </div>
+                  <div className="flex items-center mt-2.5">
+                    <div className="w-45">
+                      <h2 className="">EMAIL ADDRESS</h2>
+                    </div>
+                    <Input></Input>
+                  </div>
+                  <div className="flex items-center mt-2.5">
+                    <div className="w-45">
+                      <h2 className="">PASSWORD</h2>
+                    </div>
+                    <Input></Input>
+                  </div>
+                  <div className="flex items-center mt-2.5">
+                    <div className="w-45">
+                      <h2 className="">STATUS</h2>
+                    </div>
+                    <Input></Input>
+                  </div>
+                  <div className="flex justify-between mt-5">
+                    <Button>Undo Changes</Button>
+                    <Button>Save Changes</Button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <DataTable columns={columns} data={data} />
+              </div>
+            </div>
+            <BillsUpload />
+            <BillsUpload />
+            <BillsUpload />
+            <SubFacilityAccess />
+            <ExportPanel />
+          </div>
+        </SidebarProvider>
+      </div>
     </>
   );
 }
@@ -246,7 +301,28 @@ function AppSideBar({ selectedIdx }) {
   ];
 
   return (
-    <>TERST</>
+    <Sidebar className="3xs top-24 md:sticky h-full">
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item, idx) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    className={`hover:bg-lighter-primary hover:text-white ${idx === selectedIdx ? "bg-primary-color text-white" : ""}`}
+                  >
+                    <a href={item.url}>
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   );
 }
 
