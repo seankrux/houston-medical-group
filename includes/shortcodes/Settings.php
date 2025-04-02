@@ -14,7 +14,9 @@ class Settings implements Shortcode {
 
     public function render( array $atts ): string|false {
         ob_start();
+        
         load_template( TMT_HMG_PATH . 'Base/Settings.php', true );
+        
         return ob_get_clean();
     }
 

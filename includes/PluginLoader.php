@@ -13,7 +13,16 @@ class PluginLoader {
         $this->initialize_components();
     }
 
-    private function load_dependencies() {}
+    private function load_dependencies() {
+        add_action( 'wp_enqueue_scripts', function () {
+            wp_enqueue_style( 
+                'hmg-sidebar',
+                TMT_HMG_URL . 'src/assets/sidebar.css',
+                array(),
+                filemtime( TMT_HMG_PATH . 'src/assets/sidebar.css' )
+            );
+        });
+    }
 
     private function initialize_components() {
         ( new ShortcodeLoader() )->init();
