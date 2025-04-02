@@ -28,5 +28,12 @@ class Tasks implements Shortcode {
                 'in-footer' => true
             )
         );
+
+        wp_register_style( 
+            'hmg-tasks',
+            TMT_HMG_URL . 'src/assets/tasks.css',
+            array(),
+            filemtime( TMT_HMG_PATH . 'src/assets/tasks.css' )
+        );
     }
 }

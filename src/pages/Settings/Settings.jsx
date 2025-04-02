@@ -63,7 +63,6 @@ function Settings() {
     <>
       <div className="flex h-full w-full bg-background-color">
         <SidebarProvider>
-          <AppSideBar selectedIdx={8} />
           <div className="px-5 py-5 w-full grid-cols-2 grid gap-5">
             <SidebarTrigger className="md:hidden" />
             <div className="grid grid-cols-2 bg-white p-5 gap-5 col-span-2 rounded-xs">
