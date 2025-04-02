@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { styled } from "styled-components";
 import companyLogo from "@/assets/logo.png";
 import {
   ChevronDown,
@@ -44,6 +45,47 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { isAfter } from "date-fns";
+
+const Headline = styled.h2`
+  font-size: 24px;
+  font-weight: 800;
+  font-family: Roboto, sans-serif;
+`
+
+const Label = styled.p`
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Roboto, sans-serif;
+`
+
+const BtnAction = styled.button`
+  border: 1px solid ${props => (props.primary ? "transparent" : "#7E1417")};
+  background-color: ${props => (props.primary ? "#7E1417" : "#FFF")};
+  color: ${props => (props.primary ? "#FFF" : "#7E1417")};
+  font-weight: 500;
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+  padding: 10px 20px;
+  border-radius: 26px;
+  cursor: pointer;
+`
+
+const InputField = styled.input`
+  border: 2px solid #7E1417;
+  border-radius: 5px;
+  width: 100%;
+`
+
+const SearchFieldWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #600; /* Dark red border */
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+`
 
 function Settings() {
   const columns = [
@@ -67,42 +109,21 @@ function Settings() {
             <SidebarTrigger className="md:hidden" />
             <div className="grid grid-cols-2 bg-white p-5 gap-5 col-span-2 rounded-xs">
               <div>
-                <h2>EMPLOYEES</h2>
-                <Input></Input>
+                <div className="flex flex-col gap-5">
+                  <Headline>EMPLOYEES</Headline>
+                  <SearchFieldWrapper>
+                    <InputField/>
+                  </SearchFieldWrapper>
+                </div>
                 <div className="mt-5">
-                  <div className="flex items-center">
-                    <div className="w-45">
-                      <h2 className="">FIRST NAME</h2>
-                    </div>
-                    <Input></Input>
-                  </div>
-                  <div className="flex items-center mt-2.5">
-                    <div className="w-45">
-                      <h2 className="">LAST NAME</h2>
-                    </div>
-                    <Input></Input>
-                  </div>
-                  <div className="flex items-center mt-2.5">
-                    <div className="w-45">
-                      <h2 className="">EMAIL ADDRESS</h2>
-                    </div>
-                    <Input></Input>
-                  </div>
-                  <div className="flex items-center mt-2.5">
-                    <div className="w-45">
-                      <h2 className="">PASSWORD</h2>
-                    </div>
-                    <Input></Input>
-                  </div>
-                  <div className="flex items-center mt-2.5">
-                    <div className="w-45">
-                      <h2 className="">STATUS</h2>
-                    </div>
-                    <Input></Input>
-                  </div>
+                  <EmployeeFields label={"FIRST NAME"}/>
+                  <EmployeeFields label={"LAST NAME"}/>
+                  <EmployeeFields label={"EMAIL ADDRESS"}/>
+                  <EmployeeFields label={"PASSWORD"}/>
+                  <EmployeeFields label={"STATUS"}/>
                   <div className="flex justify-between mt-5">
-                    <Button>Undo Changes</Button>
-                    <Button>Save Changes</Button>
+                    <BtnAction>Undo Changes</BtnAction>
+                    <BtnAction primary>Save Changes</BtnAction>
                   </div>
                 </div>
               </div>
@@ -120,6 +141,19 @@ function Settings() {
       </div>
     </>
   );
+}
+
+const EmployeeFields = ({label}) => {
+  return (
+    <div className="flex items-center justify-between mt-2.5 gap-5">
+      <div className="w-1/4">
+        <Label>{label}</Label>
+      </div>
+      <div className="w-3/4">
+        <InputField/>
+      </div>
+    </div>
+  )
 }
 
 function BillsUpload() {

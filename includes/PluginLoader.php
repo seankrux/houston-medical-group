@@ -21,6 +21,12 @@ class PluginLoader {
                 array(),
                 filemtime( TMT_HMG_PATH . 'src/assets/sidebar.css' )
             );
+
+            wp_enqueue_style(
+                'roboto-font', 
+                'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap', 
+                false
+            );
         });
     }
 
