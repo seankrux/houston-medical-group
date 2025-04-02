@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+    --color-primary-color: #7e1417;
+    --color-lighter-primary: #9c3639;
+    --color-lightest-primary: #ffadb0;
+    --color-background-color: #eeeeee;
+    --color-accent-gray: #f2f2f2;
+    --color-dark-gray: #626262;
+    --task-color: red;
+    --font-roboto: "Roboto", sans-serif;
+}
+
+.task-background {
+    background-color: var(--color-background-color);
+}
+
+.field-container {
+    padding: 2.5rem;
+}
+
+h2 {
+    font: var(--font-roboto);
+    font-size: medium;
+    font-weight: 700;
+}
+
+.page-title {
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    font-size: larger;
+}
+
+input.text-fields {
+    border: 2px solid var(--color-primary-color); /* Blue border */
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+    width: 20rem;
+    font-family: var(--font-roboto);
+}
+
+input.text-fields:focus {
+    outline: none;
+    border: 2px solid var(--color-primary-color); /* Keep the same border */
+    box-shadow: none; /* Remove any shadow effect */
+}
+
+.input-container {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .label-container {
+    width: 20rem;
+} */
+
+
+.new-task-btn {
+    margin-top: 1rem;
+    background-color: var(--color-primary-color); /* Blue */
+    color: white;
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    font-family: var(--font-roboto);
+}
+
+.new-task-btn:hover {
+    background-color: var(--color-lighter-primary); /* Darker blue */
+    cursor: pointer;
+}
+
+.new-task-btn:active {
+    background-color: var(--color-primary-color);
+    transform: scale(0.95);
+}
+
+.new-task-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.reminder-btn {
+    /* margin-top: 1rem; */
+    color: var(--color-primary-color);
+    /* padding: 1rem 1rem; */
+    padding-left: 0;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    font-family: var(--font-roboto);
+    box-shadow: none;
+}
+
+.btn-container {
+    width: 20rem;
+    padding: 0;
+}
+
+.reminder-btn:hover {
+    color: var(--color-lighter-primary);
+    cursor: pointer;
+}
+
+.dropdown-icon {
+    color: var(--color-primary-color);
+}
+
+/* Dropdown container */
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--color-primary-color); /* primary-color blue */
+    border-radius: 8px;
+    padding: 4px 10px;
+    cursor: pointer;
+    background-color: white;
+    transition: all 0.2s ease;
+    width: 20rem;
+    justify-content: space-between;
+}
+  
+/* Dropdown title text */
+.dropdown-title {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Dropdown content (menu popup) */
+.dropdown-content {
+    width: 20rem;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 8px 0;
+    border: var(--color-primary-color);
+}
+
+/* Dropdown label (menu section title) */
+.dropdown-label {
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Dropdown separator line */
+.dropdown-separator {
+    height: 1px;
+    background-color: #eee;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item {
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: var(--font-roboto);
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-accent-gray);
+    /* color: white; */
+}

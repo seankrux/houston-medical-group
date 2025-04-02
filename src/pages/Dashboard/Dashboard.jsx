@@ -1,5 +1,5 @@
 import { useState, React } from "react";
-import companyLogo from "./assets/logo.png";
+import companyLogo from "@/assets/logo.png";
 import {
   ChevronDown,
   Menu,
@@ -38,10 +38,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import HmgSidebar from "./customComponents/HmgSidebar";
-import HmgHeader from "./customComponents/HmgHeader";
-import Component from "./ComponentTest";
-import HmgHorizontalChart from "./customComponents/HmgHorizontalChart";
+import HmgSidebar from "@/customComponents/HmgSidebar";
+import HmgHeader from "@/customComponents/HmgHeader";
+import HmgHorizontalChart from "@/customComponents/HmgHorizontalChart";
 
 function App() {
   return (

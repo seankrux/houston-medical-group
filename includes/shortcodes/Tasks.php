@@ -10,10 +10,12 @@ use Kucrut\Vite;
 
 class Tasks implements Shortcode {
     const SHORTCODE = 'hmg_tasks';
-    const SCRIPT_HANDLE = 'hmg-tasks';
+    const SCRIPT_HANDLE = 'hmg_tasks';
 
-    public function render( array $atts ): void {
+    public function render( array $atts ): string|false {
+        ob_start();
         load_template( TMT_HMG_PATH . 'Base/Tasks.php', true );
+        return ob_get_clean();
     }
 
     public function scripts(): void {
@@ -27,6 +29,13 @@ class Tasks implements Shortcode {
                 'css-media' => 'all',
                 'in-footer' => true
             )
+        );
+
+        wp_register_style( 
+            self::SCRIPT_HANDLE,
+            TMT_HMG_URL . 'src/assets/task.css',
+            array(),
+            filemtime( TMT_HMG_PATH . 'src/assets/task.css' )
         );
     }
 }

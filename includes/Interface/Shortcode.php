@@ -6,6 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 interface Shortcode {
-    public function render( array $atts ): void;
+    public function render( array $atts ): string|false;
     public function scripts(): void;
 }

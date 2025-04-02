@@ -12,8 +12,10 @@ class Settings implements Shortcode {
     const SHORTCODE = 'hmg_settings';
     const SCRIPT_HANDLE = 'hmg_settings';
 
-    public function render( array $atts ): void {
+    public function render( array $atts ): string|false {
+        ob_start();
         load_template( TMT_HMG_PATH . 'Base/Settings.php', true );
+        return ob_get_clean();
     }
 
     public function scripts(): void {

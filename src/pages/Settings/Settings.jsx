@@ -61,7 +61,7 @@ function Settings() {
 
   return (
     <>
-      <div className="flex h-full w-full bg-background-color">
+      <div className="flex h-full w-full bg-background-color font">
         <SidebarProvider>
           <AppSideBar selectedIdx={8} />
           <div className="px-5 py-5 w-full grid-cols-2 grid gap-5">
