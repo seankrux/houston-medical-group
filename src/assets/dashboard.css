@@ -133,19 +133,19 @@
 .task-name {
     font-family: var(--font-roboto);
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--color-primary-color);
 }
 
 .task-label {
     color: var(--color-dark-gray);
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     font-family: var(--font-roboto);
     font-weight: 500;
 }
 
 .task-desc {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     font-family: var(--font-roboto);
     font-weight: 500;
 }
@@ -239,4 +239,9 @@
 
 .atty-icon {
     color: var(--color-dark-gray);
+}
+
+.pnl-circle {
+    width: 0.8rem;
+    height: 0.8rem;
 }

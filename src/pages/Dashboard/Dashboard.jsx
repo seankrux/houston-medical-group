@@ -266,15 +266,15 @@ function PanelReductions() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 text-sm md:text-base lg:grid-cols-1 xl:grid-cols-2 xl:gap-2 justify-evenly gap-1">
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2 pnl-circle"></div>
+                <div className="pnl-circle aspect-square bg-red-400 rounded-full mr-2"></div>
                 <h2 className='font-roboto text-gray-400 pnl-legend'>0 Pending</h2>
               </div>
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2 pnl-circle"></div>
+                <div className="pnl-circle aspect-square bg-red-400 rounded-full mr-2"></div>
                 <h2 className='font-roboto text-gray-400 pnl-legend'>0 Rejected</h2>
               </div>
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-green-400 rounded-full mr-2 pnl-circle"></div>
+                <div className="pnl-circle aspect-square bg-green-400 rounded-full mr-2"></div>
                 <h2 className='font-roboto text-gray-400 pnl-legend'>39 Accepted</h2>
               </div>
             </div>
@@ -314,15 +314,15 @@ function PanelDropped() {
           <div className="">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 text-sm md:text-base lg:grid-cols-1 xl:grid-cols-2 xl:gap-2 justify-evenly gap-1">
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2"></div>
+                <div className="pnl-circle aspect-square bg-red-400 rounded-full mr-2"></div>
                 <h2 className='font-roboto text-dark-gray pnl-legend'>0 Pending</h2>
               </div>
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2"></div>
+                <div className="pnl-circle aspect-square bg-red-400 rounded-full mr-2"></div>
                 <h2 className='font-roboto text-dark-gray pnl-legend'>0 Rejected</h2>
               </div>
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-green-400 rounded-full mr-2"></div>
+                <div className="pnl-circle aspect-square bg-green-400 rounded-full mr-2"></div>
                 <h2 className='font-roboto text-dark-gray pnl-legend'>39 Accepted</h2>
               </div>
             </div>
@@ -358,7 +358,7 @@ function PanelCaseStatus() {
   const statusComp = status.map((stat, idx) => {
     return (
       <div key={idx} className="flex items-center">
-        <div className={`h-4 w-4 aspect-square bg-${stat.color} rounded-full mr-2`}></div>
+        <div className={`pnl-circle aspect-square bg-${stat.color} rounded-full mr-2`}></div>
         <h2 className='font-roboto text-gray-400 pnl-legend'>
           {stat.qty} {stat.name}
         </h2>
