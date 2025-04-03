@@ -9,4 +9,234 @@
     --color-dark-gray: #626262;
     --task-color: red;
     --font-roboto: "Roboto", sans-serif;
+    --label-font-size: 0.9rem;
+    --color-gray-text: oklch(0.707 0.022 261.325)
+}
+
+.menu-label {
+    font-family: var(--font-roboto);
+    color: red;
+}
+
+.icon-container {
+    background-color: var(--color-lightest-primary);
+}
+
+.panel-icon {
+    color: var(--color-primary-color);
+}
+
+/* Dropdown container */
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--color-primary-color); /* primary-color blue */
+    border-radius: 8px;
+    padding: 4px 10px;
+    cursor: pointer;
+    background-color: white;
+    transition: all 0.2s ease;
+    width: 20rem;
+    justify-content: space-between;
+}
+  
+/* Dropdown title text */
+.dropdown-title {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Dropdown content (menu popup) */
+.dropdown-content {
+    width: 20rem;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 8px 0;
+    border: var(--color-primary-color);
+}
+
+/* Dropdown label (menu section title) */
+.dropdown-label {
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Dropdown separator line */
+.dropdown-separator {
+    height: 1px;
+    background-color: #eee;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item {
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: var(--font-roboto);
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-accent-gray);
+    /* color: white; */
+}
+
+.dropdown-desc {
+    color: var(--color-dark-gray);
+    font-family: var(--font-roboto);
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+/* Panel global */
+.pnl-label {
+    /* color: var(--color-dark-gray); */
+    font-size: var(--label-font-size);
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-roboto);
+}
+
+.pnl-percent {
+    font-weight: 600;
+    color: var(--color-primary-color);
+    font-family: var(--font-roboto);
+    font-size: 1.8rem;
+}
+
+.pnl-total {
+    font-weight: 500;
+    color: var(--color-gray-text);
+    font-family: var(--font-roboto);
+    font-size: 1.8rem;
+}
+
+.pnl-legend {
+    font-size: 0.75rem;
+    color: var(--color-gray-text);
+    font-family: var(--font-roboto);
+}
+
+/* Panel Task Style */
+
+.panel-title {
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--font-roboto);
+}
+
+.task-name {
+    font-family: var(--font-roboto);
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--color-primary-color);
+}
+
+.task-label {
+    color: var(--color-dark-gray);
+    font-size: 0.6rem;
+    font-family: var(--font-roboto);
+    font-weight: 500;
+}
+
+.task-desc {
+    font-size: 0.6rem;
+    font-family: var(--font-roboto);
+    font-weight: 500;
+}
+
+.task-container {
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2); /* Adjust as needed */
+}
+
+.btn-download {
+    margin-top: 1rem;
+    color: var(--color-primary-color);
+    padding: 0;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    font-family: var(--font-roboto);
+}
+
+.btn-download:hover {
+    cursor: pointer;
+    color: var(--color-lighter-primary);
+    background-color: white;
+    font-family: var(--font-roboto);
+}
+
+.btn-download:active {
+    transform: scale(0.95);
+}
+
+/* Panel Bills Style */
+
+.bill-percent {
+    font-weight: 600;
+    color: var(--color-primary-color);
+    font-family: var(--font-roboto);
+    font-size: 1.8rem;
+}
+
+/* Panel HEALTH PROVIDERS VELOCITY style */
+
+/* pnl-label */
+/* pnl-percent */
+
+
+/* Panel Average Reduction style */
+/* Panel Dropped style */
+/* Panel Case status style */
+
+/* pnl-label */
+/* pnl-percent */
+
+
+/* Panel balance style */
+
+.balance-label {
+    color: var(--color-gray-text);
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: var(--font-roboto);
+}
+
+.balance-amount {
+    font-size: 1rem;
+    font-family: var(--font-roboto);
+}
+
+.outstanding-balance {
+    font-size: 1.25rem;
+    color: var(--color-primary-color);
+    font-weight: 600;
+    font-family: var(--font-roboto);
+}
+
+.invite-qty {
+    font-family: var(--font-roboto);
+    color: var(--color-primary-color);
+    font-size: 1.5rem;
+}
+
+.lawyer-name {
+    font-family: var(--font-roboto);
+    font-size: 0.8rem;
+    /* width: 75%; */
+}
+
+.lawyer-container {
+    display: flex;
+    align-items: center;
+}
+
+.atty-icon {
+    color: var(--color-dark-gray);
 }

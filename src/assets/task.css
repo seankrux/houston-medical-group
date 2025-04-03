@@ -9,6 +9,7 @@
     --color-dark-gray: #626262;
     --task-color: red;
     --font-roboto: "Roboto", sans-serif;
+    --input-width: 15rem;
 }
 
 .task-background {
@@ -37,7 +38,7 @@ input.text-fields {
     padding: 1rem;
     font-size: 1rem;
     transition: all 0.3s ease-in-out;
-    width: 20rem;
+    width: var(--input-width);
     font-family: var(--font-roboto);
 }
 
@@ -99,7 +100,7 @@ input.text-fields:focus {
 }
 
 .btn-container {
-    width: 20rem;
+    width: var(--input-width);
     padding: 0;
 }
 
@@ -122,7 +123,7 @@ input.text-fields:focus {
     cursor: pointer;
     background-color: white;
     transition: all 0.2s ease;
-    width: 20rem;
+    width: var(--input-width);
     justify-content: space-between;
 }
   
@@ -138,7 +139,7 @@ input.text-fields:focus {
 
 /* Dropdown content (menu popup) */
 .dropdown-content {
-    width: 20rem;
+    width: var(--input-width);
     background-color: white;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);

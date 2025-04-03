@@ -63,7 +63,7 @@ function Dropdown() {
 
   const dropdownItems = items.map((item, idx) => {
     return (
-      <DropdownMenuItem key={idx} onClick={() => onItemSelected(item)}>
+      <DropdownMenuItem key={idx} onClick={() => onItemSelected(item)} className='dropdown-item'>
         {item}
       </DropdownMenuItem>
     );
@@ -75,20 +75,20 @@ function Dropdown() {
 
   return (
     <div className="flex items-center mb-4">
-      <h2 className="mr-4 text-lg font-semibold text-dark-gray">Sub Facility</h2>
+      <h2 className='dropdown-desc'>Sub Facility</h2>
       <DropdownMenu className="">
         <DropdownMenuTrigger asChild={true}>
-          <div className='flex items-center border-2 border-primary-color rounded-sm py-1 px-2.5'>
-          {/* <Button variant="outline" className="w-44 truncate border-2 outline-none text-lg font-normal bg-accent-gray rounded-sm focus-visible:ring-0 focus-visible:border-primary-color">
+          <div className="flex items-center border-2 border-primary-color rounded-sm py-1 px-2.5 dropdown-container">
+            {/* <Button variant="outline" className="w-44 truncate border-2 outline-none text-lg font-normal bg-accent-gray rounded-sm focus-visible:ring-0 focus-visible:border-primary-color">
             {selected ? selected : "All"}
           </Button> */}
-          <h2 className='w-40 text-lg'>{selected ? selected : "All"}</h2>
-          <ChevronDown className='text-primary-color'></ChevronDown>
+            <h2 className="w-40 text-lg dropdown-title">{selected ? selected : "All"}</h2>
+            <ChevronDown className="dropdown-icon"></ChevronDown>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>Sub Facility</DropdownMenuLabel>
-          <DropdownMenuSeparator />
+        <DropdownMenuContent className='dropdown-content'>
+          <DropdownMenuLabel className="dropdown-label">Sub Facility</DropdownMenuLabel>
+          <DropdownMenuSeparator className="dropdown-separator"/>
           {dropdownItems}
         </DropdownMenuContent>
       </DropdownMenu>
@@ -98,7 +98,7 @@ function Dropdown() {
 
 function DownloadButton() {
   return (
-    <Button className="text-primary-color bg-white hover:bg-gray-300 hover:cursor-pointer font-roboto text-base shadow-none">
+    <Button className="text-primary-color bg-white hover:bg-gray-300 hover:cursor-pointer font-roboto text-base shadow-none btn-download">
       Download Report
       <FileDown className="size-6"></FileDown>
     </Button>
@@ -124,16 +124,16 @@ function PanelTasks() {
     return (
       <div
         key={idx}
-        className="w-full mb-4 bg-accent-gray shadow-lg shadow-gray-300 rounded-sm p-2.5"
+        className="w-full mb-4 bg-accent-gray shadow-gray-300 rounded-sm p-2.5 task-container"
       >
-        <h2 className='font-roboto font-semibold text-lg text-primary-color mb-2'>{task.taskName}</h2>
+        <h2 className='font-roboto font-semibold text-lg text-primary-color mb-2 task-name'>{task.taskName}</h2>
         <div className='flex gap-2'>
-          <h2 className='font-roboto font-semibold text-gray-400'>Priority:</h2>
-          <h2 className='font-roboto font-semibold'>{task.priority}</h2>
+          <h2 className='font-roboto font-semibold text-gray-400 task-label'>Priority:</h2>
+          <h2 className='font-roboto font-semibold task-desc'>{task.priority}</h2>
         </div>
         <div className='flex gap-2'>
-          <h2 className='font-roboto font-semibold text-gray-400'>Due Date:</h2>
-          <h2 className='font-roboto font-semibold'>{task.dueDate}</h2>
+          <h2 className='font-roboto font-semibold text-gray-400 task-label'>Due Date:</h2>
+          <h2 className='font-roboto font-semibold task-desc'>{task.dueDate}</h2>
         </div>
       </div>
     );
@@ -142,10 +142,10 @@ function PanelTasks() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <MailOpenIcon className='text-primary-color'></MailOpenIcon>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <MailOpenIcon className='text-primary-color panel-icon'></MailOpenIcon>
         </div>
-        <h2 className='font-semibold font-roboto'>TASKS</h2>
+        <h2 className='font-semibold font-roboto panel-title'>TASKS</h2>
       </div>
       <div className="p-5 grid content-between w-full h-80 drop-shadow-md bg-white rounded-md">
         <div className="w-full h-60 overflow-y-auto p-2.5 border-gray-300 border-2 rounded-xs">
@@ -163,20 +163,20 @@ function PanelBills() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <ReceiptTextIcon className='text-primary-color'></ReceiptTextIcon>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <ReceiptTextIcon className='text-primary-color panel-icon'></ReceiptTextIcon>
         </div>
-        <h2 className='font-semibold font-roboto'>BILLS</h2>
+        <h2 className='font-semibold font-roboto panel-title'>BILLS</h2>
       </div>
       <div className="p-5 grid content-between w-full h-50 drop-shadow-md bg-white rounded-md">
         <div className="flex w-full h-30 justify-between rounded-sm">
           <div>
-            <p className='text-gray-400 font-roboto'>Bills</p>
-            <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color font-roboto'>63%</h2>
+            <p className='text-gray-400 font-roboto pnl-label'>Bills</p>
+            <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color font-roboto pnl-percent'>63%</h2>
           </div>
           <div>
-            <p className='text-gray-400 font-roboto'>Total</p>
-            <h2 className='text-2xl xl:text-3xl font-semibold text-dark-gray font-roboto'>$19,156.48</h2>
+            <p className='text-gray-400 font-roboto pnl-label'>Total</p>
+            <h2 className='text-2xl xl:text-3xl font-semibold text-dark-gray font-roboto pnl-total'>$19,156.48</h2>
           </div>
         </div>
         <div className="flex justify-end">
@@ -191,18 +191,18 @@ function PanelHPVelocity() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <Hourglass className='text-primary-color'></Hourglass>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <Hourglass className='text-primary-color panel-icon'></Hourglass>
         </div>
-        <h2 className='font-semibold font-roboto'>HEALTH PROVIDERS VELOCITY</h2>
+        <h2 className='font-semibold font-roboto panel-title'>HEALTH PROVIDERS VELOCITY</h2>
       </div>
       <div className="p-5 grid content-between w-full h-50 drop-shadow-md bg-white rounded-md">
         <div className="w-full h-30 justify-between rounded-sm">
           <div className="">
-            <p className='font-roboto text-gray-400'>Average Days For Payout</p>
+            <p className='font-roboto text-gray-400 pnl-label'>Average Days For Payout</p>
           </div>
           <div className='flex justify-end'>
-            <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color'>63%</h2>
+            <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color pnl-percent'>63%</h2>
           </div>
         </div>
         <div className="flex justify-end">
@@ -217,18 +217,18 @@ function PanelAvgReduction() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <TrendingUpDown className='text-primary-color'></TrendingUpDown>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <TrendingUpDown className='text-primary-color panel-icon'></TrendingUpDown>
         </div>
-        <h2 className='font-semibold font-roboto'>AVERAGE REDUCTION</h2>
+        <h2 className='font-semibold font-roboto panel-title'>AVERAGE REDUCTION</h2>
       </div>
       <div className="p-5 grid content-between w-full h-50 drop-shadow-md bg-white rounded-md">
         <div className="w-full h-30 justify-between rounded-sm">
           <div className="">
-            <p className='font-roboto text-gray-400'>Average Reduction</p>
+            <p className='font-roboto text-gray-400 pnl-label'>Average Reduction</p>
           </div>
           <div className='flex justify-end'>
-            <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color'>63%</h2>
+            <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color pnl-percent'>63%</h2>
           </div>
         </div>
         <div className="flex justify-end">
@@ -243,39 +243,39 @@ function PanelReductions() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <ArrowDown className='text-primary-color'></ArrowDown>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <ArrowDown className='text-primary-color panel-icon'></ArrowDown>
         </div>
-        <h2 className='font-semibold font-roboto'>REDUCTIONS</h2>
+        <h2 className='font-semibold font-roboto panel-title'>REDUCTIONS</h2>
       </div>
       <div className="p-5 grid content-between w-full h-80 drop-shadow-md bg-white rounded-md">
         <div className="w-full h-60 p-2.5">
-          <div className="flex justify-between w-full mb-5 h-25 border-b-2">
+          <div className="flex justify-between w-full mb-5 h-25 border-b-2 border-gray-300">
             <div>
-              <p className='font-roboto text-gray-400'>Reductions</p>
-              <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color'>5</h2>
+              <p className='font-roboto text-gray-400 pnl-label'>Reductions</p>
+              <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color pnl-percent'>5</h2>
             </div>
             <div>
-              <p className='font-roboto text-gray-400'>Total</p>
-              <h2 className='text-2xl xl:text-3xl font-semibold text-dark-gray'>$4,123.32</h2>
+              <p className='font-roboto text-gray-400 pnl-label'>Total</p>
+              <h2 className='text-2xl xl:text-3xl font-semibold text-dark-gray pnl-total'>$4,123.32</h2>
             </div>
           </div>
           <div className="">
             <div className="w-full h-8 mb-2">
               <HmgHorizontalChart/>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 text-sm md:text-base lg:grid-cols-1 xl:grid-cols-2 xl:gap-2 justify-evenly">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 text-sm md:text-base lg:grid-cols-1 xl:grid-cols-2 xl:gap-2 justify-evenly gap-1">
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2"></div>
-                <h2 className='font-roboto text-gray-400'>0 Pending</h2>
+                <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2 pnl-circle"></div>
+                <h2 className='font-roboto text-gray-400 pnl-legend'>0 Pending</h2>
               </div>
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2"></div>
-                <h2 className='font-roboto text-gray-400'>0 Rejected</h2>
+                <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2 pnl-circle"></div>
+                <h2 className='font-roboto text-gray-400 pnl-legend'>0 Rejected</h2>
               </div>
               <div className="flex items-center">
-                <div className="h-4 w-4 aspect-square bg-green-400 rounded-full mr-2"></div>
-                <h2 className='font-roboto text-gray-400'>39 Accepted</h2>
+                <div className="h-4 w-4 aspect-square bg-green-400 rounded-full mr-2 pnl-circle"></div>
+                <h2 className='font-roboto text-gray-400 pnl-legend'>39 Accepted</h2>
               </div>
             </div>
           </div>
@@ -292,38 +292,38 @@ function PanelDropped() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <X className='text-primary-color'></X>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <X className='text-primary-color panel-icon'></X>
         </div>
-        <h2 className='font-semibold'>DROPPED</h2>
+        <h2 className='font-semibold panel-title'>DROPPED</h2>
       </div>
       <div className="p-5 grid content-between w-full h-80 drop-shadow-md bg-white rounded-md">
         <div className="w-full h-60 p-2.5">
           <div className="flex justify-between w-full mb-5 h-25 border-b-2">
-            <div className="flex justify-between w-full mb-5 h-25 border-b-2">
+            <div className="flex justify-between w-full mb-5 h-25 border-b-2 border-gray-300">
               <div>
-                <p className='font-roboto text-gray-400'>Reductions</p>
-                <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color'>5</h2>
+                <p className='font-roboto text-gray-400 pnl-label'>Reductions</p>
+                <h2 className='text-2xl xl:text-3xl font-semibold text-primary-color pnl-percent'>5</h2>
               </div>
             <div>
-              <p className='font-roboto text-gray-400'>Total</p>
-              <h2 className='text-2xl xl:text-3xl font-semibold text-dark-gray'>$4,123.32</h2>
+              <p className='font-roboto text-gray-400 pnl-label'>Total</p>
+              <h2 className='text-2xl xl:text-3xl font-semibold text-dark-gray pnl-total'>$4,123.32</h2>
             </div>
           </div>
           </div>
           <div className="">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 text-sm md:text-base lg:grid-cols-1 xl:grid-cols-2 xl:gap-2 justify-evenly">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 text-sm md:text-base lg:grid-cols-1 xl:grid-cols-2 xl:gap-2 justify-evenly gap-1">
               <div className="flex items-center">
                 <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2"></div>
-                <h2 className='font-roboto text-dark-gray'>0 Pending</h2>
+                <h2 className='font-roboto text-dark-gray pnl-legend'>0 Pending</h2>
               </div>
               <div className="flex items-center">
                 <div className="h-4 w-4 aspect-square bg-red-400 rounded-full mr-2"></div>
-                <h2 className='font-roboto text-dark-gray'>0 Rejected</h2>
+                <h2 className='font-roboto text-dark-gray pnl-legend'>0 Rejected</h2>
               </div>
               <div className="flex items-center">
                 <div className="h-4 w-4 aspect-square bg-green-400 rounded-full mr-2"></div>
-                <h2 className='font-roboto text-dark-gray'>39 Accepted</h2>
+                <h2 className='font-roboto text-dark-gray pnl-legend'>39 Accepted</h2>
               </div>
             </div>
           </div>
@@ -359,7 +359,7 @@ function PanelCaseStatus() {
     return (
       <div key={idx} className="flex items-center">
         <div className={`h-4 w-4 aspect-square bg-${stat.color} rounded-full mr-2`}></div>
-        <h2 className='font-roboto text-gray-400'>
+        <h2 className='font-roboto text-gray-400 pnl-legend'>
           {stat.qty} {stat.name}
         </h2>
       </div>
@@ -369,10 +369,10 @@ function PanelCaseStatus() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <Clock className='text-primary-color'></Clock>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <Clock className='text-primary-color panel-icon'></Clock>
         </div>
-        <h2 className='font-semibold'>CASE STATUS</h2>
+        <h2 className='font-semibold panel-title'>CASE STATUS</h2>
       </div>
       <div className="p-5 grid content-between w-full h-80 lg:h-100 drop-shadow-md bg-white rounded-md">
         <div className="w-full h-60 lg:h-70 p-2.5">
@@ -380,7 +380,7 @@ function PanelCaseStatus() {
             <HmgHorizontalChart/>
           </div>
           <div className="h-full overflow-y-auto overflow-x-hidden">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 text-sm lg:grid-cols-1 xl:grid-cols-2 xl:gap-2 justify-evenly">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 text-sm lg:grid-cols-1 xl:grid-cols-2 xl:gap-2 justify-evenly gap-1">
               {statusComp}
             </div>
           </div>
@@ -397,28 +397,28 @@ function PanelBalance() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <BookOpenText className='text-primary-color'></BookOpenText>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <BookOpenText className='text-primary-color panel-icon'></BookOpenText>
         </div>
-        <h2 className='font-semibold'>BALANCE</h2>
+        <h2 className='font-semibold panel-title'>BALANCE</h2>
       </div>
       <div className="p-5 grid content-between w-full h-80 lg:h-100 drop-shadow-lg bg-white rounded-md">
         <div className="flex flex-col justify-evenly w-full h-60 lg:h-75 p-2.5 overflow-y-auto">
-          <div className="flex justify-between pb-4 border-b-2">
-            <p className='font-roboto text-gray-400'>Original Amount</p>
-            <h2 className='text-lg font-roboto font-semibold'>$ 83,625.03</h2>
+          <div className="flex justify-between pb-4 border-b-2 border-gray-300">
+            <p className='font-roboto text-gray-400 balance-label'>Original Amount</p>
+            <h2 className='text-lg font-roboto font-semibold balance-amount'>$ 83,625.03</h2>
           </div>
-          <div className="flex justify-between py-4 border-b-2">
-            <p className='font-roboto text-gray-400'>Reduced Amount</p>
-            <h2 className='text-lg font-roboto font-semibold'>$ 83,625.03</h2>
+          <div className="flex justify-between py-4 border-b-2 border-gray-300">
+            <p className='font-roboto text-gray-400 balance-label'>Reduced Amount</p>
+            <h2 className='text-lg font-roboto font-semibold balance-amount'>$ 83,625.03</h2>
           </div>
-          <div className="flex justify-between py-4 border-b-2">
-            <p className='font-roboto text-gray-400'>Paid Amount</p>
-            <h2 className='text-lg font-roboto font-semibold'>$ 83,625.03</h2>
+          <div className="flex justify-between py-4 border-b-2 border-gray-300">
+            <p className='font-roboto text-gray-400 balance-label'>Paid Amount</p>
+            <h2 className='text-lg font-roboto font-semibold balance-amount'>$ 83,625.03</h2>
           </div>
           <div className="flex justify-between pt-4">
-            <p className='font-roboto text-gray-400'>Outstanding Amount</p>
-            <h2 className='text-xl text-prim text-primary-color font-roboto font-semibold'>$ 83,625.03</h2>
+            <p className='font-roboto text-gray-400 balance-label'>Outstanding Amount</p>
+            <h2 className='text-xl text-prim text-primary-color font-roboto font-semibold outstanding-balance'>$ 83,625.03</h2>
           </div>
         </div>
         <div className="flex justify-end">
@@ -433,37 +433,37 @@ function PanelTopAttorneys() {
   return (
     <div>
       <div className="flex mb-2 lg:mb-4 items-center gap-2">
-        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just'>
-          <Star className='text-primary-color'></Star>
+        <div className='bg-lightest-primary p-1.5 rounded-full items-center flex just icon-container'>
+          <Star className='text-primary-color panel-icon'></Star>
         </div>
-        <h2 className='font-semibold'>TOP REFERRING ATTORNEYS</h2>
+        <h2 className='font-semibold panel-title'>TOP REFERRING ATTORNEYS</h2>
       </div>
       <div className="p-5 grid content-between w-full h-80 lg:h-100 drop-shadow-lg bg-white rounded-md">
         <div className="flex flex-col justify-evenly w-full h-60 lg:h-75 p-2.5 overflow-y-auto">
-          <div className="flex justify-between border-b-2 pb-0.5">
-            <h2 className='font-roboto text-gray-400'>Attorney</h2>
-            <h2 className='font-roboto text-gray-400'>Case Invites</h2>
+          <div className="flex justify-between border-b-2 border-gray-300 pb-0.5">
+            <h2 className='font-roboto text-gray-400 pnl-label'>Attorney</h2>
+            <h2 className='font-roboto text-gray-400 pnl-label'>Case Invites</h2>
           </div>
-          <div className="flex justify-between py-4 border-b-2">
-            <div className="flex">
-              <UserCircleIcon className="mr-1"></UserCircleIcon>
-              <h2 className='font-roboto font-medium'>LegalStream Concierge CLAIRE</h2>
+          <div className="flex justify-between py-4 border-b-2 border-gray-300">
+            <div className="flex lawyer-container">
+              <UserCircleIcon className="mr-1 atty-icon"></UserCircleIcon>
+              <h2 className='font-roboto font-medium lawyer-name'>LegalStream Concierge CLAIRE</h2>
             </div>
-            <h2 className='font-medium font-roboto text-primary-color text-xl'>9</h2>
+            <h2 className='font-medium font-roboto text-primary-color text-xl invite-qty'>9</h2>
           </div>
-          <div className="flex justify-between py-4 border-b-2">
-            <div className="flex">
-              <UserCircleIcon className="mr-1"></UserCircleIcon>
-              <h2 className='font-roboto font-medium'>LegalStream Concierge JULIE</h2>
+          <div className="flex justify-between py-4 border-b-2 border-gray-300">
+            <div className="flex lawyer-container">
+              <UserCircleIcon className="mr-1 atty-icon"></UserCircleIcon>
+              <h2 className='font-roboto font-medium lawyer-name'>LegalStream Concierge JULIE</h2>
             </div>
-            <h2 className='font-medium font-roboto text-primary-color text-xl'>5</h2>
+            <h2 className='font-medium font-roboto text-primary-color text-xl invite-qty'>5</h2>
           </div>
           <div className="flex justify-between pt-4">
-            <div className="flex">
-              <UserCircleIcon className="mr-1"></UserCircleIcon>
-              <h2 className='font-roboto font-medium'>LegalStream Concierge WILLIAM</h2>
+            <div className="flex lawyer-container">
+              <UserCircleIcon className="mr-1 atty-icon"></UserCircleIcon>
+              <h2 className='font-roboto font-medium lawyer-name'>LegalStream Concierge WILLIAM</h2>
             </div>
-            <h2 className='font-medium font-roboto text-primary-color text-xl'>5</h2>
+            <h2 className='font-medium font-roboto text-primary-color text-xl invite-qty'>5</h2>
           </div>
         </div>
         <div className="flex justify-end">
