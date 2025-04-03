@@ -14,6 +14,7 @@ export default defineConfig({
                 dashboard: 'src/pages/Dashboard/main.jsx',
                 settings: 'src/pages/Settings/main.jsx',
                 tasks: 'src/pages/Tasks/main.jsx',
+                caseStatus: 'src/pages/CaseStatus/main.jsx'
             },
             outDir: 'dist'
         }),

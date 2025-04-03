@@ -8,16 +8,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 use TMT\HMG\Includes\Shortcodes\Settings;
 use TMT\HMG\Includes\Shortcodes\Tasks;
 use TMT\HMG\Includes\Shortcodes\Dashboard;
+use TMT\HMG\Includes\Shortcodes\CaseStatus;
 
 class ShortcodeLoader {
     private Settings $settings;
     private Tasks $tasks;
     private Dashboard $dashboard;
+    private CaseStatus $case_status;
 
     public function __construct() {
         $this->settings = new Settings();
         $this->tasks = new Tasks();
         $this->dashboard = new Dashboard();
+        $this->case_status = new CaseStatus();
     }
 
     public function init(): void {
@@ -36,11 +39,13 @@ class ShortcodeLoader {
         $this->settings->scripts();
         $this->tasks->scripts();
         $this->dashboard->scripts();
+        $this->case_status->scripts();
     }
 
     public function shortcodes() {
         add_shortcode( $this->settings::SHORTCODE, array( $this->settings, 'render' ) );
         add_shortcode( $this->tasks::SHORTCODE, array( $this->tasks, 'render' ) );
         add_shortcode( $this->dashboard ::SHORTCODE, array( $this->dashboard, 'render' ) );
+        add_shortcode( $this->case_status ::SHORTCODE, array( $this->case_status, 'render' ) );
     }
 }
