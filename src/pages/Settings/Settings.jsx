@@ -158,8 +158,8 @@ function Settings() {
               </div>
             </div>
             <ExcelImportContainer headline="Biils Upload" />
-            <BillsUpload />
-            <BillsUpload />
+            <ExcelImportContainer headline="Cases Upload" />
+            <ExcelImportContainer headline="Attorney Upload" />
             <SubFacilityAccess />
             <ExportPanel />
           </div>
@@ -188,7 +188,7 @@ const ExcelImportContainer = ({headline, onDrop}) => {
     width: 100%;
     height: 230px;
   `
-  
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
         "text/csv": [".csv"],

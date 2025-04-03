@@ -13,7 +13,8 @@ export default defineConfig({
             input: {
                 // dashboard: 'src/pages/Dashboard/main.jsx',
                 settings: 'src/pages/Settings/main.jsx',
-                tasks: 'src/pages/Tasks/main.jsx',
+                // tasks: 'src/pages/Tasks/main.jsx',
+                importexcel: 'src/pages/ImportExcel/main.jsx', 
             },
             outDir: 'dist'
         }),
