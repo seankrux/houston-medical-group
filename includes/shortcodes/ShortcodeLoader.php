@@ -10,10 +10,12 @@ use TMT\HMG\Includes\Shortcodes\Settings;
 class ShortcodeLoader {
     private Settings $settings;
     private ImportExcel $import;
+    private Login $login;
 
     public function __construct() {
         $this->settings = new Settings();
         $this->import = new ImportExcel();
+        $this->login = new Login();
     }
 
     public function init(): void {
@@ -31,10 +33,12 @@ class ShortcodeLoader {
 
         $this->settings->scripts();
         $this->import->scripts();
+        $this->login->scripts();
     }
 
     public function shortcodes() {
         add_shortcode( $this->settings::SHORTCODE, array( $this->settings, 'render' ) );
         add_shortcode( $this->import::SHORTCODE, array( $this->import, 'render' ) );
+        add_shortcode( $this->login::SHORTCODE, array( $this->login, 'render' ) );
     }
 }
