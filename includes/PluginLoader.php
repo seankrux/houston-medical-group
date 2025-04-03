@@ -24,7 +24,7 @@ class PluginLoader {
 
             wp_enqueue_style(
                 'roboto-font', 
-                'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap', 
+                'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@100;300;400;500;700;900&display=swap', 
                 false
             );
         });
