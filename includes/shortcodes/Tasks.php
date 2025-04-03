@@ -12,8 +12,12 @@ class Tasks implements Shortcode {
     const SHORTCODE = 'hmg_tasks';
     const SCRIPT_HANDLE = 'hmg-tasks';
 
-    public function render( array $atts ): void {
+    public function render( array $atts ): string|false {
+        ob_start();
+
         load_template( TMT_HMG_PATH . 'Base/Tasks.php', true );
+
+        return ob_get_clean();
     }
 
     public function scripts(): void {

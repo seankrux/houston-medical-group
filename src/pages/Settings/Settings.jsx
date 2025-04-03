@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { styled } from "styled-components";
+import { useDropzone } from "react-dropzone";
+import { utils as xlsxUtils, read as xlsxRead } from "xlsx";
 import companyLogo from "@/assets/logo.png";
 import {
   ChevronDown,
@@ -77,16 +79,6 @@ const InputField = styled.input`
   width: 100%;
 `
 
-const SearchFieldWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #600; /* Dark red border */
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-`
-
 function Settings() {
   const columns = [
     { accessorKey: "status", header: "Status" },
@@ -101,6 +93,40 @@ function Settings() {
     },
   ];
 
+  const [parsedData, setParsedData] = useState([]);
+  const [fileName, setFileName] = useState("");
+
+  const onDropBills = useCallback((acceptedFiles) => {
+    if (acceptedFiles.length > 0) {
+      const file = acceptedFiles[0];
+      setFileName(file.name);
+
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const data = new Uint8Array(event.target.result);
+        const workbook = xlsxRead(data, { type: "array" });
+        const sheetName = "2017-2018";
+
+        if (workbook.SheetNames.includes(sheetName)) {
+          const worksheet = workbook.Sheets[sheetName];
+          let sheetData = xlsxUtils.sheet_to_json(worksheet);
+
+          sheetData = sheetData.map(row => ({
+            ...row,
+            DOI: typeof row.DOI === "number" ? convertExcelDate(row.DOI) : row.DOI
+          }));
+
+          setParsedData(sheetData); // Send parsed data to parent component
+        } else {
+          alert("Sheet does not exists");
+        }
+      };
+
+      reader.readAsArrayBuffer(file);
+    }
+  }, [setParsedData]);
+
   return (
     <>
       <div className="flex h-full w-full bg-background-color">
@@ -111,9 +137,9 @@ function Settings() {
               <div>
                 <div className="flex flex-col gap-5">
                   <Headline>EMPLOYEES</Headline>
-                  <SearchFieldWrapper>
+                  <div className="p-3 bg-white rounded-xs drop-shadow-md">
                     <InputField/>
-                  </SearchFieldWrapper>
+                  </div>
                 </div>
                 <div className="mt-5">
                   <EmployeeFields label={"FIRST NAME"}/>
@@ -131,7 +157,7 @@ function Settings() {
                 <DataTable columns={columns} data={data} />
               </div>
             </div>
-            <BillsUpload />
+            <ExcelImportContainer headline="Biils Upload" />
             <BillsUpload />
             <BillsUpload />
             <SubFacilityAccess />
@@ -156,14 +182,47 @@ const EmployeeFields = ({label}) => {
   )
 }
 
+const ExcelImportContainer = ({headline, onDrop}) => {
+  const DropzoneWrapper = styled.div`
+    border: 4px dashed #CBD0DC;
+    width: 100%;
+    height: 230px;
+  `
+  
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+        "text/csv": [".csv"],
+        "application/vnd.ms-excel": [".xls"],
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+        "application/vnd.oasis.opendocument.spreadsheet": [".ods"]
+    },
+    onDrop,
+    multiple: false
+  });
+
+  return (
+    <div className="p-5 h-80 bg-white rounded-xs drop-shadow-md">
+      <Headline>{headline}</Headline>
+      <DropzoneWrapper {...getRootProps()}>
+        <input {...getInputProps()} />
+        <p>Drag and drop some files here, or click to select files</p>
+      </DropzoneWrapper>
+      <div className="flex justify-end w-full gap-1">
+        <BtnAction>Clear</BtnAction>
+        <BtnAction primary>Save</BtnAction>
+      </div>
+    </div>
+  )
+}
+
 function BillsUpload() {
   return (
     <div className="p-5 h-80 bg-white rounded-xs drop-shadow-md">
-      <h2>BILLS UPLOAD</h2>
+      <Headline>BILLS UPLOAD</Headline>
       <div className="w-full bg-amber-500 h-50"></div>
       <div className="flex justify-end w-full gap-1">
-        <Button>Undo Changes</Button>
-        <Button>Save Changes</Button>
+        <BtnAction>Clear</BtnAction>
+        <BtnAction primary>Save</BtnAction>
       </div>
     </div>
   );
