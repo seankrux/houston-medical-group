@@ -17,20 +17,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
-  useSidebar,
-  SidebarTrigger,
-  SidebarInset
-} from "@/components/ui/sidebar";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -38,35 +24,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import HmgSidebar from "@/customComponents/HmgSidebar";
-import HmgHeader from "@/customComponents/HmgHeader";
 import HmgHorizontalChart from "@/customComponents/HmgHorizontalChart";
 
-function App() {
+function Dashboard() {
   return (
     <>
-      <HmgHeader></HmgHeader>
       <div className="flex h-full w-full bg-background-color">
-        <SidebarProvider>
-          <HmgSidebar selectedIdx={0} />
-          <SidebarInset className="overflow-hidden bg-background-color">
-            <div className="px-5 py-5 w-full">
-              <SidebarTrigger className="md:hidden" />
-              <Dropdown />
-              <div className="grid lg:grid-cols-3 gap-10 md:gap-5">
-                <PanelTasks />
-                <PanelBills />
-                <PanelHPVelocity />
-                <PanelAvgReduction />
-                <PanelReductions />
-                <PanelDropped />
-                <PanelCaseStatus />
-                <PanelBalance />
-                <PanelTopAttorneys />
-              </div>
-            </div>
-          </SidebarInset>
-        </SidebarProvider>
+        <div className="px-5 py-5 w-full">
+          <Dropdown />
+          <div className="grid lg:grid-cols-3 gap-10 md:gap-5">
+            <PanelTasks />
+            <PanelBills />
+            <PanelHPVelocity />
+            <PanelAvgReduction />
+            <PanelReductions />
+            <PanelDropped />
+            <PanelCaseStatus />
+            <PanelBalance />
+            <PanelTopAttorneys />
+          </div>
+        </div>
       </div>
     </>
   );
@@ -497,4 +474,4 @@ function PanelTopAttorneys() {
   );
 }
 
-export default App;
+export default Dashboard;
