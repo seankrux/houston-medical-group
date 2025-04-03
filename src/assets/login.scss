@@ -1,0 +1,24 @@
+.page-template {
+    &-admin-login,
+    &-employee-login,
+    &-subfacility-login {
+        main {
+            height: calc(100vh - 32px);
+        }
+    
+        .wp-block-post-content,
+        #hmg-login {
+            height: 100%;
+        }
+    
+        #hmg-login {
+            display: flex;
+        }
+    }
+
+    &-admin-login {
+        background: #7E1417 url("../../src/assets/img/login-admin-bg.png") no-repeat center center fixed;
+        background-size: cover;
+        background-blend-mode: multiply;
+    }
+}

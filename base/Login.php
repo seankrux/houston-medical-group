@@ -8,5 +8,6 @@
 use TMT\HMG\Includes\Shortcodes\Login;
 
 wp_enqueue_script( Login::SCRIPT_HANDLE );
+wp_enqueue_style( Login::SCRIPT_HANDLE );
 ?>
 <div id="hmg-login"></div>

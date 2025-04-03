@@ -21,6 +21,13 @@ class Login implements Shortcode {
     }
 
     public function scripts(): void {
+        wp_register_style(
+            self::SCRIPT_HANDLE,
+            TMT_HMG_URL . 'src/assets/login.css',
+            array(),
+            filemtime( TMT_HMG_PATH . 'src/assets/login.css' )
+        );
+
         Vite\register_asset(
             TMT_HMG_PATH . 'dist',
             'src/pages/Login/main.jsx',

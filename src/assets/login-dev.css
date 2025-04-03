@@ -1,0 +1,17 @@
+.page-template-admin-login main, .page-template-employee-login main, .page-template-subfacility-login main {
+  height: calc(100vh - 32px);
+}
+.page-template-admin-login .wp-block-post-content,
+.page-template-admin-login #hmg-login, .page-template-employee-login .wp-block-post-content,
+.page-template-employee-login #hmg-login, .page-template-subfacility-login .wp-block-post-content,
+.page-template-subfacility-login #hmg-login {
+  height: 100%;
+}
+.page-template-admin-login #hmg-login, .page-template-employee-login #hmg-login, .page-template-subfacility-login #hmg-login {
+  display: flex;
+}
+.page-template-admin-login {
+  background: #7E1417 url("../../src/assets/img/login-admin-bg.png") no-repeat center center fixed;
+  background-size: cover;
+  background-blend-mode: multiply;
+}/*# sourceMappingURL=login-dev.css.map */

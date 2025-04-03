@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { styled } from "styled-components";
+import { EyeOff, Eye } from "lucide-react";
 
 const Wrapper = styled.div`
     display: flex;
@@ -40,10 +41,13 @@ const FieldWrapper = styled.p`
         font-size: 12px;
     }
 
-    & > input {
+    & input {
         border-radius: 5px;
         border: 1px solid #000;
         height: 38px;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: -webkit-fill-available;
     }
 `
 
@@ -70,9 +74,32 @@ const BtnAction = styled.button`
     border: none;
 `
 
+const PasswordWrapper = styled.div`
+    position: relative;
+`
+
+const PasswordVisibility = styled.button`
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #7E1417;
+    outline: none;
+
+    &:active {
+        border: none;
+        color: #FFF;
+    }
+`;
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     return (
         <Wrapper>
@@ -80,11 +107,20 @@ const Login = () => {
             <Headline>Working United in the Community to Better Healthcare</Headline>
             <FieldWrapper>
                 <label htmlFor="user_login">Email Address or Username</label>
-                <input input="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="mail" name="user_login" value={email} onChange={(e) => setEmail(e.target.value)} />
             </FieldWrapper>
             <FieldWrapper>
                 <label htmlFor="user_pass">Password</label>
-                <input input="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <PasswordWrapper>
+                    <input type={showPassword ? "text" : "password"} name="user_pass" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <PasswordVisibility 
+                        type="button" 
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? <EyeOff /> : <Eye />}
+                    </PasswordVisibility>
+                </PasswordWrapper>
+                
             </FieldWrapper>
             <p>
                 <ForgotLink href="#">Forgot Password?</ForgotLink>
