@@ -1,5 +1,4 @@
 import { useState, React } from "react";
-import companyLogo from "@/assets/logo.png";
 import {
   ChevronDown,
   Menu,
