@@ -9,18 +9,21 @@ use TMT\HMG\Includes\Shortcodes\Settings;
 use TMT\HMG\Includes\Shortcodes\Tasks;
 use TMT\HMG\Includes\Shortcodes\Dashboard;
 use TMT\HMG\Includes\Shortcodes\CaseStatus;
+use TMT\HMG\Includes\Shortcodes\CaseDetails;
 
 class ShortcodeLoader {
     private Settings $settings;
     private Tasks $tasks;
     private Dashboard $dashboard;
     private CaseStatus $case_status;
+    private CaseDetails $case_details;
 
     public function __construct() {
         $this->settings = new Settings();
         $this->tasks = new Tasks();
         $this->dashboard = new Dashboard();
         $this->case_status = new CaseStatus();
+        $this->case_details = new CaseDetails();
     }
 
     public function init(): void {
@@ -40,6 +43,7 @@ class ShortcodeLoader {
         $this->tasks->scripts();
         $this->dashboard->scripts();
         $this->case_status->scripts();
+        $this->case_details->scripts();
     }
 
     public function shortcodes() {
@@ -47,5 +51,6 @@ class ShortcodeLoader {
         add_shortcode( $this->tasks::SHORTCODE, array( $this->tasks, 'render' ) );
         add_shortcode( $this->dashboard ::SHORTCODE, array( $this->dashboard, 'render' ) );
         add_shortcode( $this->case_status ::SHORTCODE, array( $this->case_status, 'render' ) );
+        add_shortcode( $this->case_details ::SHORTCODE, array( $this->case_details, 'render' ) );
     }
 }
