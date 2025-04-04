@@ -72,6 +72,7 @@ const BtnAction = styled.button`
     background-color: #7E1417;
     color: #FFF;
     border: none;
+    cursor: pointer;
 `
 
 const PasswordWrapper = styled.div`
