@@ -21,4 +21,16 @@
         background-size: cover;
         background-blend-mode: multiply;
     }
+
+    &-employee-login {
+        background: #7E1417 url("../../src/assets/img/login-employee-bg.png") no-repeat center center fixed;
+        background-size: cover;
+        background-blend-mode: multiply;
+    }
+    
+    &-subfacility-login {
+        background: #7E1417 url("../../src/assets/img/login-subfacility-bg.png") no-repeat center center fixed;
+        background-size: cover;
+        background-blend-mode: multiply;
+    }
 }

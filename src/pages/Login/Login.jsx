@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { EyeOff, Eye } from "lucide-react";
 
@@ -108,6 +108,8 @@ const ErrorBox = styled.div`
 `;
 
 const currentUrl = `${window.location.protocol}//${window.location.host}`;
+const root = document.getElementById('hmg-login');
+const dataset = root?.dataset;
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -127,6 +129,7 @@ const Login = () => {
                 body: JSON.stringify({
                     username: email,
                     password: password,
+                    roles: dataset.roles,
                 }),
             });
 
@@ -135,6 +138,9 @@ const Login = () => {
             if (data.code === 'authentication_failed') {
                 setError(data.message);
             }
+            else {
+                window.location.href = dataset.redirectUrl;
+            }
         } catch (error) {
             console.error("Error during login:", error);
         }
@@ -142,7 +148,7 @@ const Login = () => {
 
     return (
         <Wrapper>
-            <Header>Admin Sign In</Header>
+            <Header>{dataset.title} Sign In</Header>
             <Headline>Working United in the Community to Better Healthcare</Headline>
             {error && <ErrorBox>{error}</ErrorBox>}
             <FieldWrapper>

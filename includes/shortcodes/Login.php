@@ -13,9 +13,25 @@ class Login implements Shortcode {
     const SCRIPT_HANDLE = 'hmg-login';
 
     public function render( array $atts ): string|false {
+        $atts = shortcode_atts(
+            array(
+                'title' => '',
+                'roles' => '',
+                'redirect_id' => '',
+            ),
+            $atts,
+            self::SHORTCODE
+        );
+
+        $redirect_url = get_permalink($atts['redirect_id']);
+
         ob_start();
 
-        load_template( TMT_HMG_PATH . 'Base/Login.php', true );
+        load_template( TMT_HMG_PATH . 'Base/Login.php', true, array(
+            'title' => $atts['title'],
+            'roles' => $atts['roles'],
+            'redirect_url' => $redirect_url,
+        ));
 
         return ob_get_clean();
     }
