@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly.
 
 use TMT\HMG\Includes\Shortcodes\ShortcodeLoader;
+use TMT\HMG\Includes\Routes\RouterLoader;
 
 class PluginLoader {
     public function __construct() {
@@ -32,5 +33,6 @@ class PluginLoader {
 
     private function initialize_components() {
         ( new ShortcodeLoader() )->init();
+        ( new RouterLoader() )->init();
     }
 }

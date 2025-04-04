@@ -24,7 +24,7 @@ class Login extends Base implements Router {
     }
 
     public function register_routes(): void {
-        register_rest_route( self::BASE, array(
+        register_rest_route( self::BASE, self::ADMIN, array(
             'methods' => 'POST',
             'callback' => array( $this, 'admin' ),
             'permission_callback' => '__return_true'
@@ -35,6 +35,11 @@ class Login extends Base implements Router {
         $params = $request->get_json_params();
         $username = sanitize_text_field($params['username'] ?? '');
         $password = $params['password'] ?? '';
+
+        // return rest_ensure_response(array(
+        //     'username' => $username,
+        //     'password' => $password,
+        // ));
 
         $user = $this->controller->handle_authentication(
             $username,

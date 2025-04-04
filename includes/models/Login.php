@@ -33,4 +33,11 @@ class Login {
     public function get_user(): WP_User|WP_Error {
         return $this->user;
     }
+
+    public function login_user(): WP_User|WP_Error {
+        wp_set_current_user($this->user->ID);
+        wp_set_auth_cookie($this->user->ID, true);
+
+        return $this->user;
+    }
 }

@@ -95,17 +95,56 @@ const PasswordVisibility = styled.button`
         border: none;
         color: #FFF;
     }
+`
+
+const ErrorBox = styled.div`
+    background-color: #ffe6e6;
+    color: #7E1417;
+    border: 1px solid #7E1417;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 12px;
+    font-family: Roboto, sans-serif;
 `;
+
+const currentUrl = `${window.location.protocol}//${window.location.host}`;
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(`${currentUrl}/wp-json/hmg/v1/login/admin`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: email,
+                    password: password,
+                }),
+            });
+
+            const data = await response.json();
+            
+            if (data.code === 'authentication_failed') {
+                setError(data.message);
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+        }
+    }
 
     return (
         <Wrapper>
             <Header>Admin Sign In</Header>
             <Headline>Working United in the Community to Better Healthcare</Headline>
+            {error && <ErrorBox>{error}</ErrorBox>}
             <FieldWrapper>
                 <label htmlFor="user_login">Email Address or Username</label>
                 <input type="mail" name="user_login" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -127,7 +166,7 @@ const Login = () => {
                 <ForgotLink href="#">Forgot Password?</ForgotLink>
             </p>
             <p>
-                <BtnAction>Sign in</BtnAction>
+                <BtnAction onClick={handleSubmit}>Sign in</BtnAction>
             </p>
         </Wrapper>
     )

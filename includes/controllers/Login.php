@@ -14,17 +14,21 @@ class Login {
         $login = new LoginModel( $username, $password );
 
         if ( $login->get_user() instanceof WP_Error ) {
-            return $login->get_user();
-        }
-
-        if ( $login->has_roles( $roles ) ) {
             return new WP_Error(
-                'incorrect_role',
-                'User does not have the required role',
-                array('status' => 400)
+                'authentication_failed',
+                'Invalid username or password.',
+                array('status' => 401)
             );
         }
 
-        return $login->get_user();
+        if ( ! $login->has_roles( $roles ) ) {
+            return new WP_Error(
+                'authentication_failed',
+                'User does not have the required role.',
+                array('status' => 403)
+            );
+        }
+
+        return $login->login_user();
     }
 }

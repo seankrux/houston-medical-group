@@ -5,8 +5,16 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly
 
-class RouterLoader {
-    public function __construct() {}
+use TMT\HMG\Includes\Routes\Login;
 
-    public function init() {}
+class RouterLoader {
+    private Login $login;
+
+    public function __construct() {
+        $this->login = new Login();
+    }
+
+    public function init() {
+        add_action( 'rest_api_init', array( $this->login, 'register_routes' ) );
+    }
 }
