@@ -26,15 +26,19 @@ function CaseDetails() {
     <>
       <div className="flex h-full w-full bg-background-color">
         <div className="px-5 py-5 w-full">
-          <div className="">
             <Input />
-            <CaseInformation />
-            <HistoryLog />
-            <InvolvedInCase />
-            <Attorneys />
-            <MedicalBills />
-            <CaseOverview />
-            <Files />
+          <div className="panel-parent">
+            <div className='small-ones panel-container'>
+              <CaseInformation />
+              <HistoryLog />
+              <InvolvedInCase />
+              <Attorneys />
+            </div>
+            <div className='big-ones panel-container'>
+              <MedicalBills />
+              <CaseOverview />
+              <Files />
+            </div>
           </div>
         </div>
       </div>

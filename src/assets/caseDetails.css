@@ -12,3 +12,13 @@
     --label-font-size: 0.9rem;
     --color-gray-text: oklch(0.707 0.022 261.325)
 }
+
+.panel-parent {
+    display: flex;
+}
+
+.panel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
