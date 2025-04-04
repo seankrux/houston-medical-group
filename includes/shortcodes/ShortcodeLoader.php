@@ -5,11 +5,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly
 
+use PSpell\Config;
 use TMT\HMG\Includes\Shortcodes\Settings;
 use TMT\HMG\Includes\Shortcodes\Tasks;
 use TMT\HMG\Includes\Shortcodes\Dashboard;
 use TMT\HMG\Includes\Shortcodes\CaseStatus;
 use TMT\HMG\Includes\Shortcodes\CaseDetails;
+use TMT\HMG\Includes\Shortcodes\Contacts;
 
 class ShortcodeLoader {
     private Settings $settings;
@@ -17,6 +19,7 @@ class ShortcodeLoader {
     private Dashboard $dashboard;
     private CaseStatus $case_status;
     private CaseDetails $case_details;
+    private Contacts $contacts;
 
     public function __construct() {
         $this->settings = new Settings();
@@ -24,6 +27,7 @@ class ShortcodeLoader {
         $this->dashboard = new Dashboard();
         $this->case_status = new CaseStatus();
         $this->case_details = new CaseDetails();
+        $this->contacts = new Contacts();
     }
 
     public function init(): void {
@@ -44,6 +48,7 @@ class ShortcodeLoader {
         $this->dashboard->scripts();
         $this->case_status->scripts();
         $this->case_details->scripts();
+        $this->contacts->scripts();
     }
 
     public function shortcodes() {
@@ -52,5 +57,6 @@ class ShortcodeLoader {
         add_shortcode( $this->dashboard ::SHORTCODE, array( $this->dashboard, 'render' ) );
         add_shortcode( $this->case_status ::SHORTCODE, array( $this->case_status, 'render' ) );
         add_shortcode( $this->case_details ::SHORTCODE, array( $this->case_details, 'render' ) );
+        add_shortcode( $this->contacts ::SHORTCODE, array( $this->contacts, 'render' ) );
     }
 }

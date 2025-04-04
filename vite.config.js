@@ -15,7 +15,8 @@ export default defineConfig({
                 settings: 'src/pages/Settings/main.jsx',
                 tasks: 'src/pages/Tasks/main.jsx',
                 caseStatus: 'src/pages/CaseStatus/main.jsx',
-                caseDetails: 'src/pages/CaseDetails/main.jsx'
+                caseDetails: 'src/pages/CaseDetails/main.jsx',
+                contacts: 'src/pages/Contacts/main.jsx'
             },
             outDir: 'dist'
         }),
