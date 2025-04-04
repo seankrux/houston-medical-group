@@ -60,7 +60,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 90%;
+    width: 9rem;
+    max-width: 9rem;
+    /* width: 90%; */
+}
+
+@media (max-width: 1260px) {
+    .dropdown-title {
+        width: 90%;
+    }
 }
 
 /* Dropdown content (menu popup) */
