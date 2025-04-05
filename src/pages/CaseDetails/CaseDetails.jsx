@@ -456,7 +456,7 @@ function Files() {
   );
 }
 
-function Dropdown(items, name, defaultIdx) {
+function Dropdown( name, defaultIdx) {
   const [selected, setSelected] = useState();
   const items = [
     "Downtown",
