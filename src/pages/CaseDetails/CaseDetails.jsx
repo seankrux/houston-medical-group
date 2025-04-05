@@ -5,9 +5,13 @@ import {
   MailOpenIcon,
   ReceiptTextIcon,
   UserCircleIcon,
+  Trash2,
+  Edit2,
+  FilePlus2,
+  Upload,
+  UploadIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import HmgDataTable from "@/customComponents/HmgDataTable";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +22,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const pageIndex = 4;
 
@@ -49,22 +66,22 @@ function CaseDetails() {
 function CaseInformation() {
   return (
     <div className="p-5 shadow-sm shadow-gray-400">
-      <h2>CASE INFORMATION</h2>
-      <div>
+      <h2 className='panel-title'>CASE INFORMATION</h2>
+      <div className='case-info-container'>
         <div className="flex justify-between">
-          <h2>Case Number</h2>
-          <h2>2591</h2>
+          <h2 className='field-label'>Case Number</h2>
+          <h2 className='field-value'>2591</h2>
         </div>
         <div className="flex justify-between">
-          <h2>Created</h2>
-          <h2>11/14/2023</h2>
+          <h2 className='field-label'>Created</h2>
+          <h2 className='field-value'>11/14/2023</h2>
         </div>
         <div className="flex justify-between">
-          <h2>Type</h2>
-          <h2>Slip and Fall</h2>
+          <h2 className='field-label'>Type</h2>
+          <h2 className='field-value'>Slip and Fall</h2>
         </div>
         <div className="flex justify-between">
-          <h2>Status</h2>
+          <h2 className='field-label'>Status</h2>
           <Dropdown />
         </div>
       </div>
@@ -85,14 +102,14 @@ function HistoryLog() {
 
   const histLogComp = historyLog.map((val, idx) => {
     return (
-      <div className="flex justify-between" key={idx}>
+      <div className="flex justify-between case-hist-details" key={idx}>
         <div className="flex gap-2.5">
-          <h2>Date:</h2>
-          <h2>{val.date}</h2>
+          <h2 className='field-label'>Date:</h2>
+          <h2 className='field-value'>{val.date}</h2>
         </div>
         <div className="flex gap-2.5">
-          <h2>Status:</h2>
-          <h2>{val.status}</h2>
+          <h2 className='field-label'>Status:</h2>
+          <h2 className='field-value'>{val.status}</h2>
         </div>
       </div>
     );
@@ -100,8 +117,8 @@ function HistoryLog() {
 
   return (
     <div className="p-5 shadow-sm shadow-gray-400">
-      <h2>CASE INFORMATION</h2>
-      <div className="h-40 bg-red-300 overflow-y-auto">{histLogComp}</div>
+      <h2 className='panel-title'>HISTORY LOG</h2>
+      <div className="h-40 bg-red-300 overflow-y-auto hist-log-container">{histLogComp}</div>
     </div>
   );
 }
@@ -109,12 +126,12 @@ function HistoryLog() {
 function InvolvedInCase() {
   return (
     <div className="p-5 shadow-sm shadow-gray-400">
-      <h2>INVOLED IN CASE</h2>
-      <div className="">
-        <h2>Claimant</h2>
-        <div className="flex">
-          <UserCircleIcon></UserCircleIcon>
-          <h2>John Doe</h2>
+      <h2 className='panel-title'>INVOLVED IN CASE</h2>
+      <div className="involved-in-case-cont">
+        <h2 className='field-label'>Claimant</h2>
+        <div className="flex claimant-details">
+          <UserCircleIcon className="case-details-user-icon"></UserCircleIcon>
+          <h2 className='field-value'>John Doe</h2>
         </div>
       </div>
     </div>
@@ -146,34 +163,34 @@ function Attorneys() {
 
   const attyComp = attorneys.map((value, idx) => {
     return (
-      <div key={idx}>
-        <div className="flex mb-2.5">
-          <UserCircleIcon></UserCircleIcon>
-          {value.name}
+      <div key={idx} className='atty-details-container'>
+        <div className="flex mb-2.5 atty-name">
+          <UserCircleIcon className="case-details-user-icon"></UserCircleIcon>
+          <h2>{value.name}</h2>
         </div>
         <div className="flex justify-between">
-          <h2>Company</h2>
-          <h2>{value.company}</h2>
+          <h2 className='field-label'>Company</h2>
+          <h2 className='field-value'>{value.company}</h2>
         </div>
         <div className="flex justify-between">
-          <h2>Email</h2>
-          <h2>{value.email}</h2>
+          <h2 className='field-label'>Email</h2>
+          <h2 className='field-value'>{value.email}</h2>
         </div>
         <div className="flex justify-between">
-          <h2>Phone</h2>
-          <h2>{value.phone}</h2>
+          <h2 className='field-label'>Phone</h2>
+          <h2 className='field-value'>{value.phone}</h2>
         </div>
         <div className="flex justify-between">
-          <h2>Role</h2>
-          <h2>{value.role}</h2>
+          <h2 className='field-label'>Role</h2>
+          <h2 className='field-value'>{value.role}</h2>
         </div>
         <div className="flex justify-between items-center">
-          <h2>Pending Lawsuit</h2>
-          <Checkbox className={"border-black"} />
+          <h2 className='field-label'>Pending Lawsuit</h2>
+          <input type="checkbox" className="atty-checkbox"/>
         </div>
         <div className="flex justify-between">
-          <h2>Collections Contact</h2>
-          <Dropdown />
+          <h2 className='field-label'>Collections Contact</h2>
+          <input type="checkbox" className="atty-checkbox"/>
         </div>
       </div>
     );
@@ -181,7 +198,7 @@ function Attorneys() {
 
   return (
     <div className="p-5 shadow-sm shadow-gray-400">
-      <h2 className="mb-5">ATTORNEYS</h2>
+      <h2 className="mb-5 panel-title">ATTORNEYS</h2>
       <div className="grid gap-5">{attyComp}</div>
     </div>
   );
@@ -233,9 +250,9 @@ function MedicalBills() {
 
   return (
     <div className="p-5 shadow-sm shadow-gray-400">
-      <h2>MEDICAL BILLS</h2>
+      <h2 className='panel-title'>MEDICAL BILLS</h2>
       <div className="h-50 overflow-y-auto">
-        <HmgDataTable columns={columns} data={data} />
+        <DataTable columns={columns} data={data} />
       </div>
     </div>
   );
@@ -275,22 +292,28 @@ function CaseOverview() {
   const notesComp = notes.map((note, idx) => {
     return (
       <div
-        className="flex justify-between border-t-2 border-t-gray-300"
+        className="flex justify-between border-t-2 border-t-gray-300 note-container"
         key={idx}
       >
         <div>
-          <div className="flex">
-            <UserCircleIcon className=""></UserCircleIcon>
-            <div>
-              <h2>{note.name}</h2>
-              <h2>{note.datetime}</h2>
+          <div className="note-header">
+            <UserCircleIcon className="case-details-user-icon"></UserCircleIcon>
+            <div className='note-header-name'>
+              <h2 className='note-author'>{note.name}</h2>
+              <h2 className='date-label'>{note.datetime}</h2>
             </div>
           </div>
-          <h2>{note.note}</h2>
+          <h2 className='note'>{note.note}</h2>
         </div>
         <div>
-          <Button>Delete</Button>
-          <Button>Edit</Button>
+          <Button className='btn'>
+            <Trash2></Trash2>
+            Delete
+          </Button>
+          <Button className='btn'>
+            <Edit2></Edit2>
+            Edit
+          </Button>
         </div>
       </div>
     );
@@ -299,7 +322,10 @@ function CaseOverview() {
   const notesSection = (
     <>
       <div className="flex w-full justify-end">
-        <Button>Add Notes</Button>
+        <Button className='btn'>
+          <FilePlus2></FilePlus2>
+          Add Notes
+        </Button>
       </div>
       <div className="grid gap-5 h-60 overflow-y-auto">{notesComp}</div>
     </>
@@ -308,7 +334,10 @@ function CaseOverview() {
   const taskSection = (
     <>
       <div className="flex w-full justify-end">
-        <Button>Add Task</Button>
+        <Button className='btn'>
+          <FilePlus2></FilePlus2>
+          Add Task
+        </Button>
       </div>
       <div className="grid gap-5 h-60 overflow-y-auto bg-red-300">
         {notesComp}
@@ -322,14 +351,26 @@ function CaseOverview() {
 
   return (
     <div className="p-5 shadow-sm shadow-gray-400">
-      <h2>CASE OVERVIEW</h2>
+      <h2 className='panel-title'>CASE OVERVIEW</h2>
       <div className="flex gap-2.5">
         <h2>Date of Accident:</h2>
         <h2>09/23/24</h2>
       </div>
-      <div>
-        <Button onClick={() => handleSectionClicked(true)}>Notes</Button>
-        <Button onClick={() => handleSectionClicked(false)}>Tasks</Button>
+      <div className='nav-container'>
+        <Button onClick={() => handleSectionClicked(true)} className={`btn-nav ${isOnNotes ? "btn-nav-active" : ""}`}>
+          <div>
+            Notes
+            <div className='underline-comp'>
+            </div>
+          </div>
+        </Button>
+        <Button onClick={() => handleSectionClicked(false)} className={`btn-nav ${!isOnNotes ? "btn-nav-active" : ""}`}>
+          <div>
+            Tasks
+            <div className='underline-comp'>
+            </div>
+          </div>
+        </Button>
       </div>
       <div className="">{isOnNotes === true ? notesSection : taskSection}</div>
     </div>
@@ -366,28 +407,36 @@ function Files() {
 
   const filesComp = files.map((file, idx) => {
     return (
-      <div key={idx} className="border-t-2 border-t-gray-300">
+      <div key={idx} className="border-t-2 border-t-gray-300 file-detail-container">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <ReceiptTextIcon />
-            <h2>{file.fileName}</h2>
+            <ReceiptTextIcon color="red"/>
+            <h2 className='file-name'>{file.fileName}</h2>
           </div>
           <div className="flex">
-            <Button>Delete</Button>
-            <Button>Edit</Button>
+            <Button className='btn'>
+              <Trash2></Trash2>
+              Delete
+            </Button>
+            <Button className='btn'>
+              <Edit2></Edit2>
+              Edit
+            </Button>
           </div>
         </div>
-        <div className="flex justify-between">
-          <h2>Type:</h2>
-          <h2>{file.type}</h2>
-        </div>
-        <div className="flex justify-between">
-          <h2>Uploaded by:</h2>
-          <h2>{file.uploadedBy}</h2>
-        </div>
-        <div className="flex justify-between">
-          <h2>Date Uploaded:</h2>
-          <h2>{file.dateUploaded}</h2>
+        <div className='field-details'>
+          <div className="flex justify-between">
+            <h2 className='file-field-label'>Type:</h2>
+            <h2>{file.type}</h2>
+          </div>
+          <div className="flex justify-between">
+            <h2 className='file-field-label'>Uploaded by:</h2>
+            <h2>{file.uploadedBy}</h2>
+          </div>
+          <div className="flex justify-between">
+            <h2 className='file-field-label'>Date Uploaded:</h2>
+            <h2>{file.dateUploaded}</h2>
+          </div>
         </div>
       </div>
     );
@@ -395,16 +444,19 @@ function Files() {
 
   return (
     <div className="p-5 shadow-sm shadow-gray-400">
-      <h2>FILES</h2>
+      <h2 className='panel-title'>FILES</h2>
       <div className="flex justify-end">
-        <Button>Upload File</Button>
+        <Button className='btn'>
+          <UploadIcon></UploadIcon>
+          Upload File
+        </Button>
       </div>
       <div className="h-50 overflow-y-auto">{filesComp}</div>
     </div>
   );
 }
 
-function Dropdown() {
+function Dropdown(items, name, defaultIdx) {
   const [selected, setSelected] = useState();
   const items = [
     "Downtown",
@@ -415,35 +467,108 @@ function Dropdown() {
     "Bellair Family Clinic",
   ];
 
-  const dropdownItems = items.map((item, idx) => {
-    return (
-      <DropdownMenuItem key={idx} onClick={() => onItemSelected(item)}>
-        {item}
-      </DropdownMenuItem>
-    );
-  });
-
   const onItemSelected = (item) => {
-    return setSelected(item);
+    setSelected(item);
   };
+
+  const dropdownItems = items.map((item, idx) => (
+    <DropdownMenuItem
+      key={idx}
+      onClick={() => onItemSelected(item)}
+      className="dropdown-item"
+    >
+      {item}
+    </DropdownMenuItem>
+  ));
 
   return (
     <div className="flex items-center">
-      {/* <h2 className='mr-4'>Sub Facility</h2> */}
-      <DropdownMenu className="">
-        <DropdownMenuTrigger asChild={true}>
-          <Button variant="outline" className="w-36 truncate">
-            {selected ? selected : "Sub Facility"}
-          </Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="dropdown-container">
+            <span className="dropdown-title">
+              {selected ? selected : "Sub Facility"}
+            </span>
+            <ChevronDown className="ml-2 h-4 w-4" />
+          </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>Sub Facility</DropdownMenuLabel>
-          <DropdownMenuSeparator />
+        <DropdownMenuContent className="dropdown-content">
+          <DropdownMenuLabel className="dropdown-label">
+            Sub Facility
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator className="dropdown-separator" />
           {dropdownItems}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
 }
+
+function DataTable({ columns, data }) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <div className="rounded-md border data-table-container">
+      {/* Scrollable wrapper */}
+      <div className="data-table-scroll">
+        <Table className="data-table">
+          <TableHeader className="data-table-header">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id} className="data-table-row">
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id} className="data-table-head">
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody className="data-table-body">
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                  className="data-table-row"
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id} className="data-table-cell">
+                      {cell.column.id === "patientId" ? (
+                        <div className="flex items-center gap-2">
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </div>
+                      ) : (
+                        flexRender(cell.column.columnDef.cell, cell.getContext())
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow className="data-table-row">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center data-table-empty"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  );
+}
+
 
 export default CaseDetails;
